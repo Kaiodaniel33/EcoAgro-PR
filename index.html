@@ -3,76 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoAgro PR | Futuro Sustentável</title>
+    <title>SustentAgro PR | O Futuro é Agora</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <div class="logo">EcoAgro<span>PR</span></div>
-            <ul class="nav-links">
+        <nav class="menu-navegacao">
+            <div class="logo">SustentAgro <span>PR</span></div>
+            <ul class="links">
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#tecnologias">Tecnologias</a></li>
-                <li><a href="#simulador">Simulador</a></li>
+                <li><a href="#praticas">Práticas</a></li>
+                <li><a href="#calculadora">Calculadora Sustentável</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="inicio" class="hero">
-            <div class="hero-content">
-                <h1>Agro Forte, Futuro Sustentável</h1>
-                <p>O equilíbrio perfeito entre a alta produção agrícola e a preservação do meio ambiente no Paraná.</p>
-                <a href="#simulador" class="btn-primary">Testar Simulador</a>
+            <div class="hero-texto">
+                <h1>Equilíbrio entre Produção e Meio Ambiente</h1>
+                <p>O campo não precisa parar para a natureza respirar. Descubra como a tecnologia e a sustentabilidade caminham juntas no Paraná.</p>
+                <a href="#calculadora" class="botao-destaque">Faça uma Simulação</a>
             </div>
         </section>
 
-        <section id="tecnologias" class="cards-section">
-            <h2>Práticas Sustentáveis</h2>
-            <div class="grid-container">
-                <div class="card">
+        <section id="praticas" class="secao-cards">
+            <h2>Nossos Pilares</h2>
+            <div class="container-cards">
+                <article class="card">
+                    <div class="icone">🌱</div>
                     <h3>Rotação de Culturas</h3>
-                    <p>Previne a exaustão do solo e quebra o ciclo de pragas, aumentando a produtividade de forma natural.</p>
-                </div>
-                <div class="card">
-                    <h3>Irrigação Inteligente</h3>
-                    <p>Uso de sensores de umidade e gotejamento para economizar até 40% dos recursos hídricos.</p>
-                </div>
-                <div class="card">
-                    <h3>Energia Solar</h3>
-                    <p>Autonomia energética para o maquinário e galpões, reduzindo a emissão de carbono.</p>
-                </div>
+                    <p>Alternância de espécies vegetais na mesma área agrícola, melhorando a estrutura do solo e quebrando o ciclo de pragas.</p>
+                </article>
+                <article class="card">
+                    <div class="icone">💧</div>
+                    <h3>Irrigação de Precisão</h3>
+                    <p>Sensores que medem a umidade do solo em tempo real, fornecendo água apenas onde e quando é necessário.</p>
+                </article>
+                <article class="card">
+                    <div class="icone">☀️</div>
+                    <h3>Energia Limpa</h3>
+                    <p>Uso de painéis solares para alimentar maquinários e sistemas de irrigação, reduzindo a emissão de CO2.</p>
+                </article>
             </div>
         </section>
 
-        <section id="simulador" class="interactive-section">
-            <h2>Simulador de Economia de Água</h2>
-            <p>Selecione o tamanho da sua lavoura e o método de irrigação para ver o impacto ambiental.</p>
+        <section id="calculadora" class="secao-interativa">
+            <h2>Calculadora de Impacto</h2>
+            <p>Simule quanto você pode economizar implementando a Irrigação de Precisão na sua lavoura.</p>
             
-            <div class="calculator-box">
-                <div class="input-group">
-                    <label for="hectares">Tamanho da Lavoura (Hectares):</label>
-                    <input type="number" id="hectares" placeholder="Ex: 50" min="1">
-                </div>
-                
-                <div class="input-group">
-                    <label for="metodo">Método de Irrigação atual:</label>
-                    <select id="metodo">
-                        <option value="aspersao">Aspersão Tradicional</option>
-                        <option value="inundacao">Inundação</option>
-                    </select>
-                </div>
-
-                <button id="btn-calcular" class="btn-secondary">Calcular Impacto Sustentável</button>
-
-                <div id="resultado-simulacao" class="resultado hidden">
+            <div class="box-calculadora">
+                <form id="form-simulador">
+                    <div class="grupo-input">
+                        <label for="area">Área da Lavoura (em Hectares):</label>
+                        <input type="number" id="area" required min="1" placeholder="Ex: 100">
                     </div>
+                    <button type="submit" class="botao-calcular">Calcular Impacto</button>
+                </form>
+
+                <div id="resultado" class="escondido">
+                    <!-- O JavaScript vai injetar os resultados aqui -->
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Desenvolvido por Kaio Daniel | Concurso Agrinho 2026</p>
+        <p>&copy; 2026 Desenvolvido por Kaio Daniel | TDS 2º Ano - Concurso Agrinho</p>
     </footer>
 
     <script src="script.js"></script>
