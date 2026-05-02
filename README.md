@@ -1,21 +1,24 @@
-# CoopAgro PR - Sustentabilidade em Foco 🌱
+# CoopAgro PR - Futuro Sustentável 🌱
 
 ## 🎯 Objetivo do Projeto
-Projeto desenvolvido para o Concurso Agrinho 2026. O objetivo desta aplicação web é abordar o tema **"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"**. 
+Projeto oficial desenvolvido para o Concurso Agrinho 2026. Este sistema web aborda o tema **"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"**. 
 
-A plataforma foi construída em arquitetura **One-Page** (Página Única), simulando o portal de uma cooperativa agrícola. Ela oferece ao produtor informações técnicas sobre manejo (Plantio Direto e Rotação de Culturas) e conta com uma calculadora desenvolvida em JavaScript para prever o impacto da sustentabilidade na produtividade.
+A aplicação funciona como uma Landing Page institucional voltada para o produtor rural paranaense, oferecendo informações sobre o Plantio Direto e Rotação de Culturas. O grande diferencial é o **Motor de Cálculo Agronômico**, um simulador interativo que demonstra como as práticas conservacionistas alavancam os lucros da safra e preservam milhares de litros de água.
 
 ## 💻 Tecnologias Utilizadas
-* **HTML5:** Estruturação semântica e acessível.
-* **CSS3:** Design System responsivo (Flexbox/Grid), variáveis globais e `scroll-behavior` suave.
-* **JavaScript (Vanilla):** Captura de eventos, lógica condicional agronômica e manipulação de DOM para injeção de resultados.
+Projeto construído com rigor técnico em engenharia front-end sem o uso de frameworks externos:
+* **HTML5:** Semântico e estruturado.
+* **CSS3:** Variáveis Globais, Flexbox, Grid e Media Queries para responsividade absoluta. Implementação de animações de rolagem.
+* **JavaScript (Vanilla):** Responsável por melhorias de usabilidade (Dark Mode com armazenamento em LocalStorage), manipulação funcional de DOM, validação de formulários e processamento matemático de variáveis agronômicas.
 
-## 📂 Arquitetura de Arquivos
-A fim de manter a complexidade e a organização exigidas, o projeto está estruturado em:
-* `index.html` - Arquivo raiz (One-Page) contendo todas as seções.
-* `style.css` - Folha de estilos externa.
-* `script.js` - Arquivo de scripts contendo o motor da calculadora.
-
----
-**Tags:** agrinho
-Desenvolvido por Kaio Daniel - Técnico em Desenvolvimento de Sistemas (2º Ano).
+## 📂 Organização de Arquivos
+```text
+/Projeto_CoopAgro
+│
+├── index.html       # Arquivo estrutural único (One-Page)
+├── style.css        # Folha de estilos e Design System
+├── script.js        # Lógica de interação, cálculos e DOM
+├── README.md        # Documentação do software
+│
+└── /assets          # Diretório de mídia para assets estáticos
+    └── /img         # Armazenamento organizado de imagens
