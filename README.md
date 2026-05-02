@@ -3,27 +3,19 @@
 ## 🎯 Objetivo do Projeto
 Projeto desenvolvido para o Concurso Agrinho 2026. O objetivo desta aplicação web é abordar o tema **"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"**. 
 
-A plataforma simula um ambiente institucional de uma cooperativa agrícola, oferecendo ao produtor rural informações técnicas sobre manejo de solo (como Plantio Direto e Rotação de Culturas) e uma ferramenta interativa para calcular o impacto dessas práticas sustentáveis na retenção hídrica e na produtividade da lavoura.
+A plataforma foi construída em arquitetura **One-Page** (Página Única), simulando o portal de uma cooperativa agrícola. Ela oferece ao produtor informações técnicas sobre manejo (Plantio Direto e Rotação de Culturas) e conta com uma calculadora desenvolvida em JavaScript para prever o impacto da sustentabilidade na produtividade.
 
 ## 💻 Tecnologias Utilizadas
-Este projeto foi construído utilizando as melhores práticas de desenvolvimento Front-End, sem o uso de frameworks:
-* **HTML5:** Estruturação semântica em múltiplas páginas.
-* **CSS3:** Estilização responsiva utilizando Flexbox, CSS Grid e variáveis globais.
-* **JavaScript (Vanilla):** Lógica de programação, manipulação de DOM e cálculos da ferramenta interativa.
+* **HTML5:** Estruturação semântica e acessível.
+* **CSS3:** Design System responsivo (Flexbox/Grid), variáveis globais e `scroll-behavior` suave.
+* **JavaScript (Vanilla):** Captura de eventos, lógica condicional agronômica e manipulação de DOM para injeção de resultados.
 
-## 🚀 Instruções de Uso
-1. Acesse o link do projeto publicado: `https://kaiodaniel33.github.io/EcoAgro-PR/#praticas`
-2. Navegue pela página inicial para entender a proposta da plataforma.
-3. Acesse a aba **"Manejo e Solo"** no menu superior.
-4. Role a página até a seção da **Calculadora de Produtividade**.
-5. Insira o tamanho de uma propriedade rural (em hectares) e selecione o nível de tecnologia de manejo.
-6. Clique em "Gerar Relatório de Impacto" para visualizar os cálculos matemáticos gerados dinamicamente via JavaScript.
-
-## 📂 Estrutura de Arquivos
-* `index.html` - Página principal.
-* `manejo.html` - Página interna de conteúdo técnico e calculadora.
-* `style.css` - Folha de estilos única reaproveitada nas duas páginas.
-* `script.js` - Arquivo de scripts contendo toda a lógica e manipulação de eventos.
+## 📂 Arquitetura de Arquivos
+A fim de manter a complexidade e a organização exigidas, o projeto está estruturado em:
+* `index.html` - Arquivo raiz (One-Page) contendo todas as seções.
+* `style.css` - Folha de estilos externa.
+* `script.js` - Arquivo de scripts contendo o motor da calculadora.
 
 ---
-Desenvolvido por Kaio Daniel - Técnico em Desenvolvimento de Sistemas.
+**Tags:** agrinho
+Desenvolvido por Kaio Daniel - Técnico em Desenvolvimento de Sistemas (2º Ano).
