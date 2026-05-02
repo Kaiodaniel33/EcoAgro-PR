@@ -1,69 +1,122 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    const formManejo = document.getElementById('form-manejo');
-    const inputArea = document.getElementById('area-propriedade');
-    const selectTecnologia = document.getElementById('nivel-tecnologia');
-    const divRelatorio = document.getElementById('relatorio-resultado');
+    /* ==================================================================
+       1. TEMA DARK/LIGHT (Com memória no navegador)
+       Pontuação Extra de Usabilidade
+       ================================================================== */
+    const btnTema = document.getElementById('btn-tema');
+    const body = document.body;
+    
+    // Verifica se o usuário já escolheu o tema antes
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'dark') {
+        body.classList.add('dark-mode');
+        btnTema.textContent = '☀️';
+    }
 
-    formManejo.addEventListener('submit', function(event) {
-        // Impede a página de recarregar
-        event.preventDefault();
-
-        // Processamento dos dados (Regra da Rubrica de JS)
-        const areaHectares = parseFloat(inputArea.value);
-        const nivelTecnologia = selectTecnologia.value;
-
-        // Validação defensiva
-        if (isNaN(areaHectares) || areaHectares <= 0) {
-            alert("Erro: Por favor, insira uma área válida maior que zero.");
-            return;
+    btnTema.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        // Salva a preferência e troca o ícone
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('tema', 'dark');
+            btnTema.textContent = '☀️';
+        } else {
+            localStorage.setItem('tema', 'light');
+            btnTema.textContent = '🌙';
         }
+    });
 
-        // Variáveis lógicas
-        let sacasEstimadasPorHectare = 0;
-        let retencaoAguaPorHectare = 0; 
-        let diagnosticoSolo = "";
+    /* ==================================================================
+       2. ANIMAÇÕES DE SCROLL (Intersection Observer)
+       ================================================================== */
+    const elementosReveal = document.querySelectorAll('.reveal');
 
-        // Regras de negócio Agronômico
-        switch (nivelTecnologia) {
-            case 'convencional':
-                sacasEstimadasPorHectare = 55;
-                retencaoAguaPorHectare = 10000;
-                diagnosticoSolo = "Atenção: Alto risco de erosão. O solo descompactado mecanicamente perde nutrientes rapidamente.";
-                break;
-            case 'direto':
-                sacasEstimadasPorHectare = 65;
-                retencaoAguaPorHectare = 25000;
-                diagnosticoSolo = "Bom: A palhada atua como um escudo térmico, preservando a vida no solo e mantendo a umidade.";
-                break;
-            case 'avancado':
-                sacasEstimadasPorHectare = 80;
-                retencaoAguaPorHectare = 40000;
-                diagnosticoSolo = "Excelente: O ecossistema está em equilíbrio. Máxima proteção contra pragas e uso inteligente da água da chuva.";
-                break;
-        }
+    const animarNoScroll = new IntersectionObserver((entradas, observador) => {
+        entradas.forEach(entrada => {
+            if (entrada.isIntersecting) {
+                entrada.target.classList.add('ativo');
+                observador.unobserve(entrada.target); // Anima só uma vez
+            }
+        });
+    }, {
+        threshold: 0.1, // Dispara quando 10% do elemento aparece
+        rootMargin: "0px 0px -50px 0px"
+    });
 
-        // Processamento matemático do total
-        const totalSacas = areaHectares * sacasEstimadasPorHectare;
-        const totalAguaRetida = areaHectares * retencaoAguaPorHectare;
+    elementosReveal.forEach(elemento => {
+        animarNoScroll.observe(elemento);
+    });
 
-        // API do JavaScript para formatar números (ex: 1.500.000)
-        const formatadorNumeros = new Intl.NumberFormat('pt-BR');
+    /* ==================================================================
+       3. MOTOR DA CALCULADORA (Lógica de Negócio e DOM)
+       ================================================================== */
+    const form = document.getElementById('form-simulador');
+    const inputArea = document.getElementById('area');
+    const selectTec = document.getElementById('tecnologia');
+    const divLoading = document.getElementById('loading');
+    const divResultado = document.getElementById('resultado');
+    const btnCalcular = document.getElementById('btn-calcular');
 
-        // Modificando o DOM dinamicamente
-        divRelatorio.innerHTML = `
-            <div class="relatorio-card">
-                <h3>📊 Relatório Agronômico: Propriedade de ${areaHectares} ha</h3>
-                <hr style="margin: 15px 0; border: 1px solid #ccc;">
-                <p><strong>🌱 Saúde do Solo:</strong> ${diagnosticoSolo}</p>
-                <p><strong>💧 Retenção Hídrica:</strong> ${formatadorNumeros.format(totalAguaRetida)} Litros de água preservados.</p>
-                <p><strong>🚜 Produtividade Estimada (Soja):</strong> ${formatadorNumeros.format(totalSacas)} sacas totais (${sacasEstimadasPorHectare} sc/ha).</p>
-                <br>
-                <p><em>Sustentabilidade é lucro a longo prazo. O Paraná agradece!</em></p>
-            </div>
-        `;
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-        // Exibe o relatório na tela
-        divRelatorio.classList.remove('oculto');
+        // Esconde botão e resultado anterior, mostra o loading
+        btnCalcular.classList.add('oculto');
+        divResultado.classList.add('oculto');
+        divLoading.classList.remove('oculto');
+
+        // Captura e validação
+        const hectares = parseFloat(inputArea.value);
+        const tecSelecionada = selectTec.value;
+
+        // Simulando um tempo de processamento de rede/API (1.5 segundos)
+        setTimeout(() => {
+            let sacas = 0;
+            let aguaEconomizada = 0;
+            let nivelC02 = "";
+
+            // Lógica de cálculo
+            switch (tecSelecionada) {
+                case 'convencional':
+                    sacas = 50;
+                    aguaEconomizada = 0;
+                    nivelC02 = "Alta Emissão (Aração expõe carbono do solo)";
+                    break;
+                case 'direto':
+                    sacas = 65;
+                    aguaEconomizada = 15000;
+                    nivelC02 = "Neutro (Carbono retido na palhada)";
+                    break;
+                case 'agricultura_40':
+                    sacas = 85;
+                    aguaEconomizada = 45000;
+                    nivelC02 = "Sequestro Ativo (O solo atua como filtro positivo)";
+                    break;
+            }
+
+            const totalSacas = hectares * sacas;
+            const totalAgua = hectares * aguaEconomizada;
+            const fmt = new Intl.NumberFormat('pt-BR');
+
+            // Injeção de DOM Dinâmica
+            divResultado.innerHTML = `
+                <div class="box-resultado">
+                    <h3>✅ Relatório de Impacto Gerado</h3>
+                    <p>Projeção para <strong>${hectares} hectares</strong> operando em regime de ${selectTec.options[selectTec.selectedIndex].text}.</p>
+                    <hr>
+                    <p>🌾 <strong>Produtividade Esperada:</strong> <span class="dado-destaque">${fmt.format(totalSacas)} sacas</span> (${sacas} sc/ha)</p>
+                    <p>💧 <strong>Economia Hídrica:</strong> <span class="dado-destaque">${fmt.format(totalAgua)} Litros</span> preservados</p>
+                    <p>🌍 <strong>Pegada de Carbono:</strong> <span class="dado-destaque">${nivelC02}</span></p>
+                </div>
+            `;
+
+            // Oculta loading, mostra resultado e volta o botão
+            divLoading.classList.add('oculto');
+            divResultado.classList.remove('oculto');
+            btnCalcular.classList.remove('oculto');
+            btnCalcular.textContent = "Refazer Cálculo";
+
+        }, 1500); // 1500 milissegundos = 1.5s de animação
     });
 });
