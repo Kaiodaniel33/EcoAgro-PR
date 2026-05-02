@@ -7,11 +7,12 @@
     --texto-suave: #475569;
     --cor-primaria: #15803d; 
     --cor-primaria-hover: #166534;
+    --cor-acento: #eab308;
     --borda: #cbd5e1;
     --sombra-card: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* MODO ESCURO (Manipulado pelo JS) */
+/* MODO ESCURO */
 body.dark-mode {
     --bg-principal: #0f172a;
     --bg-secundario: #1e293b;
@@ -24,33 +25,17 @@ body.dark-mode {
     --sombra-card: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
-/* RESET E LAYOUT BÁSICO */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
 html { scroll-behavior: smooth; }
+body { background-color: var(--bg-principal); color: var(--texto-forte); transition: all 0.4s ease; line-height: 1.6; }
 
-body {
-    background-color: var(--bg-principal);
-    color: var(--texto-forte);
-    transition: background-color 0.4s ease, color 0.4s ease;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 .secao { padding: 100px 0; }
 .bg-claro { background-color: var(--bg-secundario); border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda); }
 
-/* NAVBAR E MENU SANDUÍCHE */
+/* ==================================================================
+   NOVO HEADER (Logo + Menu + Controles)
+   ================================================================== */
 .header-glass {
     position: fixed;
     top: 0;
@@ -65,39 +50,45 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-    position: relative;
+    height: 90px; /* Aumentei um pouco para a logo caber bem */
 }
 
-.logo { font-size: 1.8rem; font-weight: 900; }
-.logo span { color: var(--cor-primaria); }
+/* Área da Logo Animada */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
 
+.logo-img {
+    height: 55px; /* Tamanho da folha tech */
+    width: auto;
+    object-fit: contain;
+    animation: flutuar 3.5s ease-in-out infinite; /* Animação de Sênior */
+}
+
+.logo-texto { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; color: var(--texto-forte); }
+.logo-texto span { color: var(--cor-primaria); }
+
+/* Menu de Links */
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
-    transition: all 0.3s ease;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--texto-forte);
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
+.nav-links a { text-decoration: none; color: var(--texto-forte); font-weight: 600; transition: color 0.3s ease; }
 .nav-links a:hover { color: var(--cor-primaria); }
 
-/* Botão Sanduíche (Oculto no Desktop) */
-.menu-toggle {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--texto-forte);
+/* Área de Controles (Modo Escuro e Sanduíche) */
+.controles-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-/* Botão Tema */
 .btn-tema {
     display: flex;
     align-items: center;
@@ -111,27 +102,27 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .btn-tema:hover { background-color: var(--borda); transform: scale(1.05); }
 
-/* BOTÕES GERAIS */
-.btn-primario, .btn-outline {
-    display: inline-block;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
+.menu-toggle {
+    display: none; /* Escondido no PC */
+    font-size: 2.2rem;
     cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
+    color: var(--texto-forte);
 }
+
+/* ==================================================================
+   BOTÕES GERAIS E ANIMAÇÕES
+   ================================================================== */
+.btn-primario, .btn-outline { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; border: none; transition: all 0.3s ease; }
 .btn-primario { background-color: var(--cor-primaria); color: #ffffff; }
 .btn-primario:hover { background-color: var(--cor-primaria-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(21, 128, 61, 0.3); }
 .btn-outline { background-color: transparent; border: 2px solid var(--cor-primaria); color: var(--cor-primaria); }
 .btn-outline:hover { background-color: var(--cor-primaria); color: #ffffff; }
 .w-100 { width: 100%; }
 
-/* HERO E CARDS */
+/* O resto do Layout... */
 .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
 .glow-effect { position: absolute; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, rgba(255,255,255,0) 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; }
 .badge { display: inline-block; background-color: rgba(34, 197, 94, 0.1); color: var(--cor-primaria); padding: 6px 16px; border-radius: 30px; font-weight: bold; margin-bottom: 20px; }
@@ -146,7 +137,6 @@ body {
 .card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--cor-primaria); }
 .card-icone { font-size: 3rem; margin-bottom: 20px; }
 
-/* SIMULADOR E FORMULÁRIO */
 .grid-simulador { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
 .lista-passos { margin-top: 30px; list-style: none; }
 .lista-passos li { margin-bottom: 15px; font-size: 1.1rem; padding-left: 20px; border-left: 3px solid var(--cor-primaria); }
@@ -156,7 +146,6 @@ body {
 .grupo-input input, .grupo-input select { width: 100%; padding: 12px; border: 1px solid var(--borda); border-radius: 8px; background-color: var(--bg-principal); color: var(--texto-forte); font-size: 1rem; transition: border-color 0.3s; }
 .grupo-input input:focus, .grupo-input select:focus { outline: none; border-color: var(--cor-primaria); }
 
-/* UTILITÁRIOS JS */
 .oculto { display: none; }
 #status-carregamento { text-align: center; padding: 30px 0; }
 .loader { width: 40px; height: 40px; border: 4px solid var(--borda); border-top-color: var(--cor-primaria); border-radius: 50%; margin: 0 auto 15px; animation: girar 1s linear infinite; }
@@ -170,24 +159,32 @@ body {
 .reveal.ativo { opacity: 1; transform: translateY(0); }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
 
+/* Animação nova para a sua Logo */
+@keyframes flutuar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
 footer { background-color: var(--bg-secundario); border-top: 1px solid var(--borda); padding: 30px 0; text-align: center; color: var(--texto-suave); }
 
-/* =========================================================
-   MEDIA QUERIES - RESPONSIVIDADE (CELULAR E MENU SANDUÍCHE) 
-   ========================================================= */
+/* ==================================================================
+   MEDIA QUERIES - RESPONSIVIDADE (CELULAR E TABLET) 
+   ================================================================== */
 @media (max-width: 992px) {
     .grid-simulador { grid-template-columns: 1fr; }
     .hero-conteudo h1 { font-size: 2.5rem; }
     
-    /* Configuração do Menu Sanduíche */
-    .menu-toggle { display: block; } /* Mostra o ícone no celular */
+    /* Regras do Menu de Celular */
+    .menu-toggle { display: block; } /* Liga o Sanduíche */
+    .texto-oculto-mobile { display: none; } /* Esconde a palavra "Modo Escuro" pra economizar espaço e deixa só o ícone */
     
     .nav-links {
-        display: none; /* Esconde o menu original */
+        display: none; /* Esconde a lista deitada */
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 80px; /* Logo abaixo da navbar */
+        top: 90px; /* Mesma altura do header */
         left: 0;
         background-color: var(--bg-secundario);
         padding: 20px;
@@ -195,7 +192,6 @@ footer { background-color: var(--bg-secundario); border-top: 1px solid var(--bor
         box-shadow: 0 10px 10px rgba(0,0,0,0.1);
     }
     
-    /* Classe adicionada pelo JS para mostrar o menu */
+    /* Classe do JS para mostrar o sanduíche */
     .nav-links.ativo { display: flex; }
-    .btn-tema { width: 100%; justify-content: center; margin-top: 10px; }
 }
