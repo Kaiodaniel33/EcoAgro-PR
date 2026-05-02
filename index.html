@@ -3,75 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SustentAgro PR | O Futuro é Agora</title>
+    <title>CoopAgro PR | Futuro Sustentável</title>
+    <!-- O CSS externo é regra de ouro -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav class="menu-navegacao">
-            <div class="logo">SustentAgro <span>PR</span></div>
-            <ul class="links">
+    <header class="header-principal">
+        <nav class="navbar">
+            <div class="logo">CoopAgro <span>PR</span></div>
+            <ul class="nav-menu">
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#praticas">Práticas</a></li>
-                <li><a href="#calculadora">Calculadora Sustentável</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#manejo">Manejo e Solo</a></li>
+                <li><a href="#simulador">Calculadora</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="inicio" class="hero">
-            <div class="hero-texto">
-                <h1>Equilíbrio entre Produção e Meio Ambiente</h1>
-                <p>O campo não precisa parar para a natureza respirar. Descubra como a tecnologia e a sustentabilidade caminham juntas no Paraná.</p>
-                <a href="#calculadora" class="botao-destaque">Faça uma Simulação</a>
+        <!-- SEÇÃO 1: HERO -->
+        <section id="inicio" class="hero-institucional">
+            <div class="hero-conteudo">
+                <h1>Agro Forte, Futuro Sustentável</h1>
+                <p>O equilíbrio perfeito entre a máxima produtividade da sua lavoura e a preservação do meio ambiente. Descubra o poder da tecnologia no campo.</p>
+                <a href="#manejo" class="btn-primario">Boas Práticas de Manejo</a>
             </div>
         </section>
 
-        <section id="praticas" class="secao-cards">
-            <h2>Nossos Pilares</h2>
-            <div class="container-cards">
-                <article class="card">
-                    <div class="icone">🌱</div>
-                    <h3>Rotação de Culturas</h3>
-                    <p>Alternância de espécies vegetais na mesma área agrícola, melhorando a estrutura do solo e quebrando o ciclo de pragas.</p>
-                </article>
-                <article class="card">
-                    <div class="icone">💧</div>
-                    <h3>Irrigação de Precisão</h3>
-                    <p>Sensores que medem a umidade do solo em tempo real, fornecendo água apenas onde e quando é necessário.</p>
-                </article>
-                <article class="card">
-                    <div class="icone">☀️</div>
-                    <h3>Energia Limpa</h3>
-                    <p>Uso de painéis solares para alimentar maquinários e sistemas de irrigação, reduzindo a emissão de CO2.</p>
-                </article>
+        <!-- SEÇÃO 2: BENEFÍCIOS -->
+        <section id="beneficios" class="destaques-coop container-secao">
+            <h2 class="titulo-secao">Por que inovar no campo?</h2>
+            <div class="grid-3">
+                <div class="card-beneficio">
+                    <h3>📈 Maior Produtividade</h3>
+                    <p>O uso de agricultura de precisão garante que cada semente atinja seu potencial máximo, aumentando as sacas por hectare.</p>
+                </div>
+                <div class="card-beneficio">
+                    <h3>💰 Redução de Custos</h3>
+                    <p>Aplicações em taxa variável economizam insumos, colocando o fertilizante apenas onde o solo realmente precisa.</p>
+                </div>
+                <div class="card-beneficio">
+                    <h3>🌍 Proteção do Solo</h3>
+                    <p>Técnicas modernas evitam a erosão e garantem que sua terra seja fértil para as próximas gerações.</p>
+                </div>
             </div>
         </section>
 
-        <section id="calculadora" class="secao-interativa">
-            <h2>Calculadora de Impacto</h2>
-            <p>Simule quanto você pode economizar implementando a Irrigação de Precisão na sua lavoura.</p>
+        <!-- SEÇÃO 3: MANEJO TÉCNICO -->
+        <section id="manejo" class="conteudo-tecnico container-secao">
+            <h2 class="titulo-secao">Manejo Inteligente: O Segredo da Safra</h2>
             
-            <div class="box-calculadora">
-                <form id="form-simulador">
-                    <div class="grupo-input">
-                        <label for="area">Área da Lavoura (em Hectares):</label>
-                        <input type="number" id="area" required min="1" placeholder="Ex: 100">
-                    </div>
-                    <button type="submit" class="botao-calcular">Calcular Impacto</button>
-                </form>
+            <article class="topico-tecnico">
+                <h2>1. Sistema de Plantio Direto (SPD)</h2>
+                <div class="texto-tecnico">
+                    <p><strong>O que é:</strong> Plantar a semente diretamente sobre a palhada da cultura anterior, sem arar ou gradear a terra.</p>
+                    <p><strong>Impacto:</strong> A palhada protege o solo contra o impacto da chuva, reduzindo a erosão em até 90% e mantendo a umidade para a planta não sofrer em épocas de seca.</p>
+                </div>
+            </article>
 
-                <div id="resultado" class="escondido">
-                    <!-- O JavaScript vai injetar os resultados aqui -->
+            <article class="topico-tecnico">
+                <h2>2. Rotação de Culturas</h2>
+                <div class="texto-tecnico">
+                    <p><strong>O que é:</strong> Alternar diferentes espécies vegetais (ex: Soja, Milho, Braquiária) na mesma área agrícola em safras diferentes.</p>
+                    <p><strong>Impacto:</strong> Raízes de diferentes tamanhos descompactam o solo naturalmente, quebram o ciclo de pragas e reduzem o gasto com defensivos químicos.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- SEÇÃO 4: CALCULADORA -->
+        <section id="simulador" class="call-to-action-simulador container-secao">
+            <div class="conteudo-calculadora">
+                <h2 class="titulo-branco">Calcule o seu Impacto</h2>
+                <p>Use nossa ferramenta desenvolvida em JavaScript para calcular o impacto dessas técnicas na sua propriedade.</p>
+                
+                <div class="calculadora-avancada">
+                    <form id="form-manejo">
+                        <div class="form-linha">
+                            <div class="input-group">
+                                <label for="area-propriedade">Área (Hectares):</label>
+                                <input type="number" id="area-propriedade" min="1" required placeholder="Ex: 50">
+                            </div>
+                            <div class="input-group">
+                                <label for="nivel-tecnologia">Nível de Manejo Sustentável:</label>
+                                <select id="nivel-tecnologia" required>
+                                    <option value="convencional">Manejo Convencional (Aração e Gradeação)</option>
+                                    <option value="direto">Plantio Direto (Básico)</option>
+                                    <option value="avancado">Plantio Direto + Rotação de Culturas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primario btn-block">Gerar Relatório Agronômico</button>
+                    </form>
+
+                    <!-- O JS vai injetar o resultado aqui -->
+                    <div id="relatorio-resultado" class="oculto"></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Desenvolvido por Kaio Daniel | TDS 2º Ano - Concurso Agrinho</p>
+    <footer class="footer-institucional">
+        <div class="container-secao">
+            <p>&copy; 2026 CoopAgro PR - Desenvolvido por Kaio Daniel (TDS 2º Ano).</p>
+            <p>Projeto Oficial Concurso Agrinho 2026</p>
+        </div>
     </footer>
 
+    <!-- O JS externo no final do body -->
     <script src="script.js"></script>
 </body>
 </html>
