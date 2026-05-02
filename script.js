@@ -1,53 +1,48 @@
-// Aguarda o DOM carregar completamente antes de rodar os scripts
+// Aguarda o carregamento do HTML para executar o script
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Captura os elementos do DOM
-    const btnCalcular = document.getElementById('btn-calcular');
-    const inputHectares = document.getElementById('hectares');
-    const selectMetodo = document.getElementById('metodo');
-    const divResultado = document.getElementById('resultado-simulacao');
+    // Captura os elementos necessários do DOM
+    const formulario = document.getElementById('form-simulador');
+    const inputArea = document.getElementById('area');
+    const divResultado = document.getElementById('resultado');
 
-    // Função que processa os dados e manipula o DOM (Requisito de Nível 4)
-    function calcularImpacto() {
-        // Pega os valores e valida
-        const hectares = parseFloat(inputHectares.value);
-        const metodo = selectMetodo.value;
+    // Variáveis constantes para a lógica de negócio (Dados baseados em estimativas agro)
+    const ECONOMIA_AGUA_POR_HECTARE = 12500; // Litros economizados por mês por hectare com irrigação inteligente
+    const REDUCAO_CO2_POR_HECTARE = 45; // Quilos de CO2 a menos na atmosfera por hectare
 
-        // Validação simples
-        if (isNaN(hectares) || hectares <= 0) {
-            alert("Por favor, insira um valor válido para os hectares.");
-            return;
-        }
+    // Adiciona o evento de 'submit' no formulário
+    formulario.addEventListener('submit', function(evento) {
+        // Previne o recarregamento da página padrão do formulário
+        evento.preventDefault();
 
-        // Lógica de negócio: Cálculo fictício de economia
-        // Se mudar para Gotejamento Inteligente (Prática Sustentável)
-        let economiaAguaPorHectare = 0; // em litros por dia
+        // Captura o valor digitado e converte para número
+        const hectares = parseFloat(inputArea.value);
 
-        if (metodo === 'aspersao') {
-            economiaAguaPorHectare = 15000; // Economiza 15 mil litros/ha mudando para gotejamento inteligente
-        } else if (metodo === 'inundacao') {
-            economiaAguaPorHectare = 35000; // Economiza 35 mil litros/ha mudando para gotejamento inteligente
-        }
+        // Processamento lógico matemático
+        const totalAguaEconomizada = hectares * ECONOMIA_AGUA_POR_HECTARE;
+        const totalCo2Reduzido = hectares * REDUCAO_CO2_POR_HECTARE;
 
-        // Cálculo total usando variáveis
-        const economiaTotal = hectares * economiaAguaPorHectare;
-        
-        // Formatação do número para ficar bonito na tela (ex: 1.500.000)
-        const economiaFormatada = economiaTotal.toLocaleString('pt-BR');
+        // Formatação dos números para o padrão brasileiro (ex: 1.000.000)
+        const aguaFormatada = totalAguaEconomizada.toLocaleString('pt-BR');
+        const co2Formatado = totalCo2Reduzido.toLocaleString('pt-BR');
 
-        // Manipulação do DOM: Injetando o resultado dinamicamente com Template Literals
+        // Manipulação do DOM: Injeta o HTML processado dinamicamente
         divResultado.innerHTML = `
-            <h3>Resultado da Transição Sustentável</h3>
-            <p>Se você migrar seus <strong>${hectares} hectares</strong> para um sistema de Irrigação de Precisão Inteligente (IoT):</p>
-            <br>
-            <p>💧 Você economizaria aproximadamente <strong>${economiaFormatada} litros de água por mês</strong>.</p>
-            <p>🌱 O meio ambiente agradece, e seu custo operacional cai drasticamente, gerando o verdadeiro equilíbrio entre produção e natureza!</p>
+            <div class="box-resultado">
+                <h3>O Impacto da sua Lavoura</h3>
+                <p>Ao modernizar seus <span>${hectares} hectares</span> com tecnologias sustentáveis, você estaria contribuindo com:</p>
+                <br>
+                <p>💧 Economia de <span>${aguaFormatada} Litros</span> de água potável por mês.</p>
+                <p>🌬️ Redução de <span>${co2Formatado} kg</span> de CO2 lançados na atmosfera.</p>
+                <br>
+                <p><strong>Conclusão:</strong> Maior produtividade com respeito absoluto ao meio ambiente. O verdadeiro Agro Forte!</p>
+            </div>
         `;
 
-        // Remove a classe 'hidden' para mostrar a DIV com uma transição
-        divResultado.classList.remove('hidden');
-    }
-
-    // Adiciona o Event Listener no botão
-    btnCalcular.addEventListener('click', calcularImpacto);
+        // Remove a classe que esconde a div para exibir o resultado com animação
+        divResultado.classList.remove('escondido');
+        
+        // Limpa o input após o cálculo (Boa prática de UX)
+        inputArea.value = '';
+    });
 });
