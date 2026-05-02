@@ -3,110 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoopAgro PR | Inovação Sustentável</title>
-    <!-- CSS Externo Semântico -->
+    <title>CoopAgro PR | Tecnologia Sustentável</title>
+    <!-- Link para o CSS externo (Obrigatório) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header-principal">
+    <!-- NAVEGAÇÃO -->
+    <header class="header-glass">
         <nav class="navbar container">
-            <div class="logo">CoopAgro<span>.PR</span></div>
-            <ul class="nav-menu">
+            <div class="logo">CoopAgro<span>.</span></div>
+            <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#tecnicas">Técnicas</a></li>
+                <li><a href="#como-funciona">Como Funciona</a></li>
                 <li><a href="#simulador" class="btn-outline">Simulador</a></li>
-                <!-- Melhoria para o usuário: Modo Escuro (Garante nota máxima em Usabilidade) -->
-                <li><button id="btn-tema" aria-label="Alternar Tema Escuro">🌙</button></li>
+                <!-- Botão de Tema Melhorado e Visível -->
+                <li>
+                    <button id="btn-tema" class="btn-tema">
+                        <span id="icone-tema">🌗</span> <span class="texto-tema">Modo Escuro</span>
+                    </button>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <!-- SEÇÃO HERO (Apresentação Clara) -->
         <section id="inicio" class="hero">
-            <div class="hero-conteudo reveal">
-                <span class="tag">Concurso Agrinho 2026</span>
-                <h1>O Futuro Sustentável do <span>Agro Paranaense</span></h1>
-                <p>Maximizamos a produtividade da sua safra aplicando tecnologia de precisão e conservação do meio ambiente lado a lado.</p>
-                <div class="hero-botoes">
-                    <a href="#simulador" class="btn-primario">Acessar Simulador</a>
+            <div class="glow-effect"></div>
+            <div class="container hero-conteudo reveal">
+                <span class="badge">Projeto Agrinho 2026</span>
+                <h1>O equilíbrio entre <span>Produção</span> e <span>Natureza</span></h1>
+                <p>Nossa plataforma ajuda produtores rurais do Paraná a adotarem práticas de manejo inteligente, garantindo safras recordes e a preservação do meio ambiente.</p>
+                <a href="#simulador" class="btn-primario">Faça um Teste Agora</a>
+            </div>
+        </section>
+
+        <!-- SEÇÃO COMO FUNCIONA (Didática para qualquer pessoa entender) -->
+        <section id="como-funciona" class="secao bg-claro">
+            <div class="container">
+                <div class="header-secao reveal">
+                    <h2>Entenda as Práticas Sustentáveis</h2>
+                    <p>Tecnologias que transformam o campo e protegem o planeta.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card reveal" style="transition-delay: 100ms;">
+                        <div class="card-icone">🌱</div>
+                        <h3>Plantio Direto</h3>
+                        <p>Plantar sobre a palha da safra anterior sem revirar a terra. Isso protege o solo da erosão causada pelas chuvas e mantém a terra úmida.</p>
+                    </div>
+                    <div class="card reveal" style="transition-delay: 200ms;">
+                        <div class="card-icone">🔄</div>
+                        <h3>Rotação de Culturas</h3>
+                        <p>Mudar as plantas cultivadas a cada ano. Isso funciona como uma "vacina" natural para a terra, matando pragas sem precisar de tanto veneno.</p>
+                    </div>
+                    <div class="card reveal" style="transition-delay: 300ms;">
+                        <div class="card-icone">💧</div>
+                        <h3>Irrigação de Precisão</h3>
+                        <p>O uso de sensores espalhados pela lavoura garante que a água só seja liberada onde a planta realmente está com sede, evitando o desperdício.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="tecnicas" class="secao container">
-            <div class="cabecalho-secao reveal">
-                <h2>Manejo Inteligente de Solo</h2>
-                <p>Práticas adotadas pelos maiores produtores para garantir o equilíbrio ecológico e financeiro.</p>
-            </div>
-            
-            <div class="grid-manejo">
-                <article class="card-tecnico reveal">
-                    <div class="card-icon">🌱</div>
-                    <h3>Plantio Direto (SPD)</h3>
-                    <p>A palhada da cultura anterior forma um escudo no solo. Isso reduz a erosão em até 90% durante chuvas intensas e preserva a umidade vital para a germinação.</p>
-                </article>
-                
-                <article class="card-tecnico reveal">
-                    <div class="card-icon">🔄</div>
-                    <h3>Rotação de Culturas</h3>
-                    <p>Alternar espécies quebra o ciclo biológico de pragas e injeta nitrogênio naturalmente na terra, diminuindo a dependência de fertilizantes químicos poluentes.</p>
-                </article>
-                
-                <article class="card-tecnico reveal">
-                    <div class="card-icon">💧</div>
-                    <h3>Irrigação de Precisão</h3>
-                    <p>Sensores IoT medem a umidade real da terra, acionando a irrigação apenas onde é estritamente necessário, poupando milhões de litros de água doce.</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="simulador" class="secao bg-alternativo">
-            <div class="container simulador-wrapper reveal">
-                <div class="simulador-texto">
-                    <h2>Calculadora de Impacto Agronômico</h2>
-                    <p>Insira os dados da sua propriedade e descubra como a adoção do pacote tecnológico preserva o meio ambiente enquanto aumenta seus lucros.</p>
+        <!-- SEÇÃO SIMULADOR (Calculadora Interativa) -->
+        <section id="simulador" class="secao">
+            <div class="container grid-simulador reveal">
+                <div class="info-simulador">
+                    <h2>Simulador de Impacto</h2>
+                    <p>Descubra em 3 passos simples como a tecnologia pode mudar os resultados da sua fazenda.</p>
+                    <ul class="lista-passos">
+                        <li><strong>Passo 1:</strong> Informe o tamanho da sua área.</li>
+                        <li><strong>Passo 2:</strong> Escolha qual tecnologia você quer aplicar.</li>
+                        <li><strong>Passo 3:</strong> Clique em calcular e veja a mágica.</li>
+                    </ul>
                 </div>
-                
-                <div class="simulador-box">
-                    <form id="form-simulador">
-                        <div class="input-grupo">
-                            <label for="area">Tamanho da Propriedade (Hectares):</label>
-                            <input type="number" id="area" min="1" placeholder="Ex: 50" required>
+
+                <div class="box-calculadora">
+                    <form id="form-agro">
+                        <div class="grupo-input">
+                            <label for="hectares">1. Área da Fazenda (em Hectares):</label>
+                            <input type="number" id="hectares" min="1" placeholder="Ex: 50" required>
                         </div>
-                        <div class="input-grupo">
-                            <label for="tecnologia">Selecione o Manejo Utilizado:</label>
-                            <select id="tecnologia" required>
-                                <option value="" disabled selected>Escolha uma opção...</option>
-                                <option value="convencional">Aração Convencional (Sem conservação)</option>
-                                <option value="direto">Plantio Direto Básico</option>
-                                <option value="avancado">Agricultura 4.0 (Plantio Direto + IoT)</option>
+
+                        <div class="grupo-input">
+                            <label for="manejo">2. Qual tecnologia deseja aplicar?</label>
+                            <select id="manejo" required>
+                                <option value="" disabled selected>Selecione uma opção...</option>
+                                <option value="basico">Manejo Convencional (Sem proteção)</option>
+                                <option value="intermediario">Plantio Direto Básico</option>
+                                <option value="avancado">Alta Tecnologia (Plantio Direto + Rotação + Sensores)</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn-primario btn-full" id="btn-calcular">Calcular Retorno Sustentável</button>
+
+                        <button type="submit" id="btn-calcular" class="btn-primario w-100">3. Processar Relatório</button>
                     </form>
 
-                    <!-- Elementos manipulados via JS -->
-                    <div id="loading" class="oculto">
-                        <div class="spinner"></div>
-                        <p>Analisando dados do solo paranaense...</p>
+                    <!-- Feedback Visual de Carregamento (UX Profissional) -->
+                    <div id="status-carregamento" class="oculto">
+                        <div class="loader"></div>
+                        <p>Calculando impacto ambiental e financeiro...</p>
                     </div>
 
-                    <div id="resultado" class="oculto">
-                        <!-- Conteúdo injetado dinamicamente -->
-                    </div>
+                    <!-- Div onde o Relatório vai aparecer -->
+                    <div id="resultado-relatorio" class="oculto"></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer-principal">
-        <div class="container">
-            <p>&copy; 2026 Desenvolvido por Kaio Daniel | TDS 2º Ano.</p>
-            <p>Projeto Oficial - Categoria Programação Front-End.</p>
+    <footer>
+        <div class="container footer-texto">
+            <p><strong>CoopAgro PR</strong> &copy; 2026 - Concurso Agrinho</p>
+            <p>Engenharia Front-End desenvolvida por Kaio Daniel.</p>
         </div>
     </footer>
 
-    <!-- JS Externo no final da página -->
+    <!-- Script sempre no final -->
     <script src="script.js"></script>
 </body>
 </html>
