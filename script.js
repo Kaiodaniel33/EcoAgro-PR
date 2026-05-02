@@ -1,119 +1,135 @@
-// Função global para aguardar o carregamento da página
+// Aguarda o HTML ser completamente carregado para rodar o JS (Evita Bugs)
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ==========================================
-    // MÓDULO 1: MELHORIA DE USABILIDADE (MODO ESCURO)
-    // ==========================================
+    /* ==================================================================
+       1. MELHORIA DE USUÁRIO: MODO ESCURO (Nível 4 de Usabilidade)
+       ================================================================== */
     const btnTema = document.getElementById('btn-tema');
-    const corpoSite = document.body;
+    const textoTema = document.querySelector('.texto-tema');
+    const iconeTema = document.getElementById('icone-tema');
+    const bodySite = document.body;
     
-    // Verifica no LocalStorage se o usuário já preferia o modo escuro
-    if (localStorage.getItem('tema_agrinho') === 'dark') {
-        corpoSite.classList.add('dark-mode');
-        btnTema.textContent = '☀️';
+    // Checa na memória do navegador se o usuário já preferia o modo escuro
+    if (localStorage.getItem('preferencia_tema') === 'dark') {
+        bodySite.classList.add('dark-mode');
+        textoTema.textContent = 'Modo Claro';
+        iconeTema.textContent = '☀️';
     }
 
-    // Função para alternar entre temas claro e escuro
+    // Ação do botão de tema
     btnTema.addEventListener('click', () => {
-        corpoSite.classList.toggle('dark-mode');
+        bodySite.classList.toggle('dark-mode'); // Adiciona ou tira a classe
         
-        if (corpoSite.classList.contains('dark-mode')) {
-            localStorage.setItem('tema_agrinho', 'dark');
-            btnTema.textContent = '☀️';
+        // Se ativou o modo escuro, salva no navegador e troca o texto/ícone
+        if (bodySite.classList.contains('dark-mode')) {
+            localStorage.setItem('preferencia_tema', 'dark');
+            textoTema.textContent = 'Modo Claro';
+            iconeTema.textContent = '☀️';
         } else {
-            localStorage.setItem('tema_agrinho', 'light');
-            btnTema.textContent = '🌙';
+            // Se voltou para o claro
+            localStorage.setItem('preferencia_tema', 'light');
+            textoTema.textContent = 'Modo Escuro';
+            iconeTema.textContent = '🌗';
         }
     });
 
-    // ==========================================
-    // MÓDULO 2: EFEITOS VISUAIS E ANIMAÇÃO DE ROLAGEM
-    // ==========================================
-    const elementosParaAnimar = document.querySelectorAll('.reveal');
+    /* ==================================================================
+       2. EFEITOS VISUAIS: ANIMAÇÃO DE ROLAGEM (Scroll Reveal)
+       ================================================================== */
+    const elementosAnimados = document.querySelectorAll('.reveal');
 
-    // API de Intersecção para fazer os cards surgirem ao rolar a página
-    const observadorDeRolagem = new IntersectionObserver((entradas) => {
-        entradas.forEach(entrada => {
-            if (entrada.isIntersecting) {
-                entrada.target.classList.add('ativo');
+    // Cria um observador que avisa quando o elemento entra na tela
+    const observador = new IntersectionObserver((elementosNaTela) => {
+        elementosNaTela.forEach(elemento => {
+            if (elemento.isIntersecting) {
+                // Adiciona a classe que faz o elemento aparecer suavemente
+                elemento.target.classList.add('ativo');
+                // Para de observar depois que apareceu uma vez (melhora o desempenho)
+                observador.unobserve(elemento.target); 
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 }); // Dispara quando 15% do elemento estiver visível
 
-    elementosParaAnimar.forEach(elemento => {
-        observadorDeRolagem.observe(elemento);
-    });
+    // Pede para o observador vigiar todos os elementos com a classe .reveal
+    elementosAnimados.forEach(el => observador.observe(el));
 
-    // ==========================================
-    // MÓDULO 3: LÓGICA DA CALCULADORA E MANIPULAÇÃO DE DOM
-    // ==========================================
-    const formCalculadora = document.getElementById('form-simulador');
-    const inputArea = document.getElementById('area');
-    const selectTecnologia = document.getElementById('tecnologia');
-    const divLoading = document.getElementById('loading');
-    const divResultado = document.getElementById('resultado');
-    const btnCalcular = document.getElementById('btn-calcular');
 
-    // Função para capturar dados e calcular o impacto agronômico
-    formCalculadora.addEventListener('submit', (evento) => {
-        // Previne o envio padrão do formulário para não recarregar a tela
+    /* ==================================================================
+       3. MOTOR DE CÁLCULO (Variáveis e Manipulação Funcional de DOM)
+       ================================================================== */
+    const formulario = document.getElementById('form-agro');
+    const inputHectares = document.getElementById('hectares');
+    const selectManejo = document.getElementById('manejo');
+    
+    const divLoading = document.getElementById('status-carregamento');
+    const divResultado = document.getElementById('resultado-relatorio');
+    const btnSubmit = document.getElementById('btn-calcular');
+
+    formulario.addEventListener('submit', (evento) => {
+        // Previne o recarregamento da página (Bug Fix)
         evento.preventDefault();
 
-        // Esconde o resultado e mostra a simulação de processamento
-        btnCalcular.classList.add('oculto');
+        // Evita múltiplos cliques (Bug Fix Avançado)
+        btnSubmit.disabled = true;
+        btnSubmit.style.opacity = '0.5';
+        btnSubmit.textContent = 'Processando...';
+
+        // Interface UX: Esconde resultado, mostra loading
         divResultado.classList.add('oculto');
         divLoading.classList.remove('oculto');
 
-        // Captura e validação das variáveis
-        const hectares = parseFloat(inputArea.value);
-        const tecnologia = selectTecnologia.value;
+        // Captura e converte as variáveis (Nível 4 de JS)
+        const areaDigitada = parseFloat(inputHectares.value);
+        const tipoManejo = selectManejo.value;
 
-        // Simula um delay no algoritmo para melhorar a percepção de processamento (UX)
+        // Simulando delay do sistema para percepção de valor (1.5s)
         setTimeout(() => {
-            let sacasPorHectare = 0;
-            let aguaPreservadaPorHectare = 0;
-            let statusSolo = "";
+            let sacasPorHa = 0;
+            let litrosPreservadosPorHa = 0;
+            let parecerSolo = "";
 
-            // Lógica condicional agronômica com base na seleção do usuário
-            if (tecnologia === 'convencional') {
-                sacasPorHectare = 52;
-                aguaPreservadaPorHectare = 0;
-                statusSolo = "Risco de degradação alto. Perda de nutrientes por lixiviação.";
-            } else if (tecnologia === 'direto') {
-                sacasPorHectare = 65;
-                aguaPreservadaPorHectare = 18000;
-                statusSolo = "Saudável. A palhada mantém a umidade e a biologia da terra.";
-            } else if (tecnologia === 'avancado') {
-                sacasPorHectare = 82;
-                aguaPreservadaPorHectare = 45000;
-                statusSolo = "Excelente. Equilíbrio perfeito entre altíssima produção e sustentabilidade.";
+            // Lógica Condicional do Negócio
+            if (tipoManejo === 'basico') {
+                sacasPorHa = 50;
+                litrosPreservadosPorHa = 0;
+                parecerSolo = "⚠️ Risco de erosão e perda de umidade.";
+            } else if (tipoManejo === 'intermediario') {
+                sacasPorHa = 68;
+                litrosPreservadosPorHa = 15000; // 15 mil litros preservados
+                parecerSolo = "✅ Palhada atua como esponja protetora.";
+            } else if (tipoManejo === 'avancado') {
+                sacasPorHa = 85;
+                litrosPreservadosPorHa = 40000; // 40 mil litros preservados
+                parecerSolo = "🌟 Perfeição: Raízes fundas e tecnologia IoT operando.";
             }
 
-            // Processamento matemático total
-            const totalSacas = hectares * sacasPorHectare;
-            const totalAgua = hectares * aguaPreservadaPorHectare;
+            // Matemática do Resultado
+            const sacasTotais = areaDigitada * sacasPorHa;
+            const aguaTotal = areaDigitada * litrosPreservadosPorHa;
             
-            // Formatador de números para o padrão Brasileiro (ex: 1.000,00)
-            const formatoBR = new Intl.NumberFormat('pt-BR');
+            // Formatador do JavaScript para padrão Brasil
+            const formatador = new Intl.NumberFormat('pt-BR');
 
-            // Manipulação dinâmica de DOM injetando HTML e Variáveis
+            // Injeção de Resultado no HTML manipulando o DOM
             divResultado.innerHTML = `
-                <div class="box-resultado">
-                    <h3>✅ Análise Gerada com Sucesso</h3>
-                    <p>Propriedade mapeada: <strong>${hectares} hectares</strong></p>
-                    <hr style="margin: 10px 0; border: 1px solid var(--cor-borda);">
-                    <p>🌾 <strong>Projeção de Colheita:</strong> <span class="destaque-dado">${formatoBR.format(totalSacas)} sacas totais</span></p>
-                    <p>💧 <strong>Água Preservada:</strong> <span class="destaque-dado">${formatoBR.format(totalAgua)} Litros</span> por ciclo</p>
-                    <p>🌍 <strong>Diagnóstico do Solo:</strong> <span class="destaque-dado">${statusSolo}</span></p>
+                <div class="box-relatorio">
+                    <h3>📊 Relatório da Propriedade</h3>
+                    <p>Área analisada: <strong>${areaDigitada} Hectares</strong>.</p>
+                    <hr>
+                    <p>🌾 <strong>Projeção de Colheita:</strong> <span class="dado-verde">${formatador.format(sacasTotais)} sacas</span></p>
+                    <p>💧 <strong>Água Doce Preservada:</strong> <span class="dado-verde">${formatador.format(aguaTotal)} Litros</span></p>
+                    <p>🌍 <strong>Diagnóstico:</strong> ${parecerSolo}</p>
                 </div>
             `;
 
-            // Finaliza o processamento trocando as classes ocultas
+            // Finaliza o fluxo restaurando os botões e ocultando o loading
             divLoading.classList.add('oculto');
             divResultado.classList.remove('oculto');
-            btnCalcular.classList.remove('oculto');
-            btnCalcular.textContent = "Refazer Simulação";
+            
+            btnSubmit.disabled = false;
+            btnSubmit.style.opacity = '1';
+            btnSubmit.textContent = "Refazer Simulação";
 
-        }, 1200); // 1.2 segundos de delay
+        }, 1500); // Fim do setTimeout
     });
 });
