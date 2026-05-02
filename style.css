@@ -1,14 +1,14 @@
-/* Variáveis de cores para manter um padrão visual coerente */
+/* Variáveis para padronizar as cores do projeto */
 :root {
-    --primary-color: #2E7D32; /* Verde escuro forte */
-    --secondary-color: #81C784; /* Verde claro sustentável */
-    --accent-color: #FBC02D; /* Amarelo agro */
-    --text-color: #333333;
-    --bg-color: #F4F6F4;
-    --white: #FFFFFF;
+    --verde-escuro: #1B5E20;
+    --verde-claro: #4CAF50;
+    --amarelo-agro: #FBC02D;
+    --fundo-claro: #F1F8E9;
+    --texto-principal: #333333;
+    --branco: #FFFFFF;
 }
 
-/* Reset básico */
+/* Reset básico para zerar margens padrão dos navegadores */
 * {
     margin: 0;
     padding: 0;
@@ -21,49 +21,48 @@ html {
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--fundo-claro);
+    color: var(--texto-principal);
 }
 
-/* Navbar usando Flexbox */
-.navbar {
+/* Header e Navegação (Flexbox) */
+.menu-navegacao {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
-    padding: 1rem 5%;
+    background-color: var(--verde-escuro);
+    padding: 20px 5%;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 999;
 }
 
 .logo {
-    color: var(--white);
-    font-size: 1.8rem;
-    font-weight: bold;
+    color: var(--branco);
+    font-size: 24px;
+    font-weight: 800;
 }
 
 .logo span {
-    color: var(--accent-color);
+    color: var(--amarelo-agro);
 }
 
-.nav-links {
+.links {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 30px;
 }
 
-.nav-links a {
-    color: var(--white);
+.links a {
+    color: var(--branco);
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-.nav-links a:hover {
-    color: var(--accent-color);
+.links a:hover {
+    color: var(--amarelo-agro);
 }
 
 /* Hero Section */
@@ -73,158 +72,178 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.8)), url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
-    color: var(--white);
+    background: linear-gradient(rgba(27, 94, 32, 0.8), rgba(27, 94, 32, 0.8)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    color: var(--branco);
     padding: 0 20px;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+.hero-texto h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
 }
 
-.hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    max-width: 800px;
+.hero-texto p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Botões */
-.btn-primary, .btn-secondary {
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
+.botao-destaque {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--amarelo-agro);
+    color: var(--verde-escuro);
+    text-decoration: none;
     font-size: 1.1rem;
     font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.2s, background-color 0.3s;
+    border-radius: 8px;
+    transition: transform 0.2s;
 }
 
-.btn-primary {
-    background-color: var(--accent-color);
-    color: var(--text-color);
-}
-
-.btn-secondary {
-    background-color: var(--primary-color);
-    color: var(--white);
-    width: 100%;
-    margin-top: 15px;
-}
-
-.btn-primary:hover, .btn-secondary:hover {
+.botao-destaque:hover {
     transform: scale(1.05);
 }
 
-/* Seção Cards usando CSS Grid */
-.cards-section {
-    padding: 5rem 5%;
+/* Seção Cards (CSS Grid) */
+.secao-cards {
+    padding: 80px 5%;
     text-align: center;
 }
 
-.cards-section h2 {
+.secao-cards h2 {
+    color: var(--verde-escuro);
     font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 3rem;
+    margin-bottom: 40px;
 }
 
-.grid-container {
+.container-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 30px;
 }
 
 .card {
-    background-color: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--branco);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.icone {
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
 
 .card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    color: var(--verde-claro);
+    margin-bottom: 15px;
 }
 
-/* Simulador / Formulário */
-.interactive-section {
-    padding: 5rem 5%;
-    background-color: var(--white);
+/* Seção Interativa / Formulário */
+.secao-interativa {
+    padding: 80px 5%;
+    background-color: var(--branco);
     text-align: center;
 }
 
-.calculator-box {
-    max-width: 600px;
-    margin: 2rem auto;
-    background-color: var(--bg-color);
-    padding: 2rem;
-    border-radius: 10px;
+.box-calculadora {
+    max-width: 500px;
+    margin: 30px auto 0;
+    background-color: var(--fundo-claro);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     text-align: left;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-.input-group {
-    margin-bottom: 1.5rem;
+.grupo-input {
+    margin-bottom: 20px;
 }
 
-.input-group label {
+.grupo-input label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
+    font-weight: 600;
+    color: var(--verde-escuro);
+    margin-bottom: 8px;
 }
 
-.input-group input, .input-group select {
+.grupo-input input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
     font-size: 1rem;
 }
 
-.hidden {
+.botao-calcular {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-calcular:hover {
+    background-color: var(--verde-claro);
+}
+
+/* Classes Dinâmicas via JS */
+.escondido {
     display: none;
 }
 
-.resultado {
-    margin-top: 20px;
-    padding: 15px;
+.box-resultado {
+    margin-top: 25px;
+    padding: 20px;
     background-color: #E8F5E9;
-    border-left: 5px solid var(--primary-color);
-    border-radius: 4px;
+    border-left: 6px solid var(--verde-claro);
+    border-radius: 6px;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-.resultado h3 {
-    color: var(--primary-color);
+.box-resultado h3 {
+    color: var(--verde-escuro);
     margin-bottom: 10px;
+}
+
+.box-resultado span {
+    font-weight: bold;
+    color: var(--verde-claro);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
 footer {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
     text-align: center;
-    padding: 2rem;
-    background-color: var(--primary-color);
-    color: var(--white);
+    padding: 25px;
 }
 
-/* Media Queries para Responsividade Absoluta (Requisito da Banca) */
+/* Responsividade Absoluta (Media Queries) */
 @media (max-width: 768px) {
-    .hero-content h1 {
+    .menu-navegacao {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    .hero-texto h1 {
         font-size: 2.5rem;
-    }
-    .hero-content p {
-        font-size: 1.2rem;
-    }
-    .nav-links {
-        display: none; /* Em um projeto maior, você adicionaria um menu hambúrguer aqui via JS */
     }
 }
