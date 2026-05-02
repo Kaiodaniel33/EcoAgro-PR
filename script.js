@@ -1,48 +1,69 @@
-// Aguarda o carregamento do HTML para executar o script
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Captura os elementos necessários do DOM
-    const formulario = document.getElementById('form-simulador');
-    const inputArea = document.getElementById('area');
-    const divResultado = document.getElementById('resultado');
+    const formManejo = document.getElementById('form-manejo');
+    const inputArea = document.getElementById('area-propriedade');
+    const selectTecnologia = document.getElementById('nivel-tecnologia');
+    const divRelatorio = document.getElementById('relatorio-resultado');
 
-    // Variáveis constantes para a lógica de negócio (Dados baseados em estimativas agro)
-    const ECONOMIA_AGUA_POR_HECTARE = 12500; // Litros economizados por mês por hectare com irrigação inteligente
-    const REDUCAO_CO2_POR_HECTARE = 45; // Quilos de CO2 a menos na atmosfera por hectare
+    formManejo.addEventListener('submit', function(event) {
+        // Impede a página de recarregar
+        event.preventDefault();
 
-    // Adiciona o evento de 'submit' no formulário
-    formulario.addEventListener('submit', function(evento) {
-        // Previne o recarregamento da página padrão do formulário
-        evento.preventDefault();
+        // Processamento dos dados (Regra da Rubrica de JS)
+        const areaHectares = parseFloat(inputArea.value);
+        const nivelTecnologia = selectTecnologia.value;
 
-        // Captura o valor digitado e converte para número
-        const hectares = parseFloat(inputArea.value);
+        // Validação defensiva
+        if (isNaN(areaHectares) || areaHectares <= 0) {
+            alert("Erro: Por favor, insira uma área válida maior que zero.");
+            return;
+        }
 
-        // Processamento lógico matemático
-        const totalAguaEconomizada = hectares * ECONOMIA_AGUA_POR_HECTARE;
-        const totalCo2Reduzido = hectares * REDUCAO_CO2_POR_HECTARE;
+        // Variáveis lógicas
+        let sacasEstimadasPorHectare = 0;
+        let retencaoAguaPorHectare = 0; 
+        let diagnosticoSolo = "";
 
-        // Formatação dos números para o padrão brasileiro (ex: 1.000.000)
-        const aguaFormatada = totalAguaEconomizada.toLocaleString('pt-BR');
-        const co2Formatado = totalCo2Reduzido.toLocaleString('pt-BR');
+        // Regras de negócio Agronômico
+        switch (nivelTecnologia) {
+            case 'convencional':
+                sacasEstimadasPorHectare = 55;
+                retencaoAguaPorHectare = 10000;
+                diagnosticoSolo = "Atenção: Alto risco de erosão. O solo descompactado mecanicamente perde nutrientes rapidamente.";
+                break;
+            case 'direto':
+                sacasEstimadasPorHectare = 65;
+                retencaoAguaPorHectare = 25000;
+                diagnosticoSolo = "Bom: A palhada atua como um escudo térmico, preservando a vida no solo e mantendo a umidade.";
+                break;
+            case 'avancado':
+                sacasEstimadasPorHectare = 80;
+                retencaoAguaPorHectare = 40000;
+                diagnosticoSolo = "Excelente: O ecossistema está em equilíbrio. Máxima proteção contra pragas e uso inteligente da água da chuva.";
+                break;
+        }
 
-        // Manipulação do DOM: Injeta o HTML processado dinamicamente
-        divResultado.innerHTML = `
-            <div class="box-resultado">
-                <h3>O Impacto da sua Lavoura</h3>
-                <p>Ao modernizar seus <span>${hectares} hectares</span> com tecnologias sustentáveis, você estaria contribuindo com:</p>
+        // Processamento matemático do total
+        const totalSacas = areaHectares * sacasEstimadasPorHectare;
+        const totalAguaRetida = areaHectares * retencaoAguaPorHectare;
+
+        // API do JavaScript para formatar números (ex: 1.500.000)
+        const formatadorNumeros = new Intl.NumberFormat('pt-BR');
+
+        // Modificando o DOM dinamicamente
+        divRelatorio.innerHTML = `
+            <div class="relatorio-card">
+                <h3>📊 Relatório Agronômico: Propriedade de ${areaHectares} ha</h3>
+                <hr style="margin: 15px 0; border: 1px solid #ccc;">
+                <p><strong>🌱 Saúde do Solo:</strong> ${diagnosticoSolo}</p>
+                <p><strong>💧 Retenção Hídrica:</strong> ${formatadorNumeros.format(totalAguaRetida)} Litros de água preservados.</p>
+                <p><strong>🚜 Produtividade Estimada (Soja):</strong> ${formatadorNumeros.format(totalSacas)} sacas totais (${sacasEstimadasPorHectare} sc/ha).</p>
                 <br>
-                <p>💧 Economia de <span>${aguaFormatada} Litros</span> de água potável por mês.</p>
-                <p>🌬️ Redução de <span>${co2Formatado} kg</span> de CO2 lançados na atmosfera.</p>
-                <br>
-                <p><strong>Conclusão:</strong> Maior produtividade com respeito absoluto ao meio ambiente. O verdadeiro Agro Forte!</p>
+                <p><em>Sustentabilidade é lucro a longo prazo. O Paraná agradece!</em></p>
             </div>
         `;
 
-        // Remove a classe que esconde a div para exibir o resultado com animação
-        divResultado.classList.remove('escondido');
-        
-        // Limpa o input após o cálculo (Boa prática de UX)
-        inputArea.value = '';
+        // Exibe o relatório na tela
+        divRelatorio.classList.remove('oculto');
     });
 });
