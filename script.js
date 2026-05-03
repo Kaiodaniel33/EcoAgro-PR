@@ -6,14 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
        ================================================================== */
     const btnTema = document.getElementById('btn-tema');
     const iconeTema = document.getElementById('icone-tema');
-    const textoTema = document.querySelector('.texto-tema');
     const bodySite = document.body;
     
     // Verifica na memória se o usuário já escolheu o tema
     if (localStorage.getItem('preferencia_tema_agrinho') === 'dark') {
         bodySite.classList.add('dark-mode');
         iconeTema.textContent = '☀️';
-        textoTema.textContent = 'Modo Claro';
     }
 
     // Função para alternar as cores e salvar a preferência
@@ -23,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (bodySite.classList.contains('dark-mode')) {
             localStorage.setItem('preferencia_tema_agrinho', 'dark');
             iconeTema.textContent = '☀️';
-            textoTema.textContent = 'Modo Claro';
         } else {
             localStorage.setItem('preferencia_tema_agrinho', 'light');
             iconeTema.textContent = '🌙';
-            textoTema.textContent = 'Modo Escuro';
         }
     });
 
@@ -71,54 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==================================================================
-       4. CAPTURA DE NOME: Olá, [Nome] (Nível 4 JS)
-       ================================================================== */
-    const inputNome = document.getElementById('nome-usuario');
-    const btnComecar = document.getElementById('btn-comecar');
-    const divGreeting = document.getElementById('greeting-display');
-
-    // Variável para armazenar o nome do usuário antes de processar
-    let usuario_nome = ""; 
-
-    btnComecar.addEventListener('click', () => {
-        // Captura o nome e remove espaços em branco extras
-        usuario_nome = inputNome.value.trim();
-
-        // Validação defensiva simples
-        if (usuario_nome === "") {
-            alert("Por favor, diga-nos o seu nome antes de continuar.");
-            return;
-        }
-
-        // Armazena o nome no localStorage para carregar depois se o site fechar
-        localStorage.setItem('agrinho_nome_usuario', usuario_nome);
-
-        // Manipula o DOM dinamicamente para mostrar o "Olá"
-        divGreeting.innerHTML = `<h3>Seja bem-vindo, <strong>${usuario_nome}</strong>! <br> Vamos construir o seu relatório sustentável.</h3>`;
-        divGreeting.classList.remove('oculto');
-        
-        // Esconde o formulário de captura e foca no simulador
-        document.querySelector('.boas-vindas-form').classList.add('oculto');
-        document.getElementById('simulador').scrollIntoView({ behavior: 'smooth' });
-    });
-
-    // Função para verificar se o nome já estava salvo ao carregar a página
-    function verificarNomeSalvo() {
-        const nomeSalvo = localStorage.getItem('agrinho_nome_usuario');
-        if (nomeSalvo) {
-            usuario_nome = nomeSalvo;
-            divGreeting.innerHTML = `<h3>Seja bem-vindo de volta, <strong>${usuario_nome}</strong>!</h3>`;
-            divGreeting.classList.remove('oculto');
-            document.querySelector('.boas-vindas-form').classList.add('oculto');
-        }
-    }
-    verificarNomeSalvo(); // Executa ao carregar
-
-
-    /* ==================================================================
-       5. MOTOR DE CÁLCULO AGRO (Semântica e Variáveis)
+       4. MOTOR DE CÁLCULO AGRO UNIFICADO 
        ================================================================== */
     const formularioAgro = document.getElementById('form-agro');
+    const inputNome = document.getElementById('nome-usuario'); // Captura o nome aqui
     const inputHectares = document.getElementById('area');
     const selectTec = document.getElementById('tecnologia');
     const divLoading = document.getElementById('loading');
@@ -133,9 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
         divResultado.classList.add('oculto');
         divLoading.classList.remove('oculto');
 
-        // Captura e converte variáveis (Requisito JS Nível 4)
+        // Captura e converte variáveis 
+        const nomeUsuario = inputNome.value.trim(); // Pega o nome digitado
         const hectares = parseFloat(inputHectares.value);
         const tecSelecionada = selectTec.value;
+
+        // Validação básica do nome
+        if (nomeUsuario === "") {
+            alert("Por favor, preencha seu nome completo.");
+            divLoading.classList.add('oculto');
+            btnCalcular.classList.remove('oculto');
+            return;
+        }
 
         // Simulando delay de processamento agronômico (1.5s)
         setTimeout(() => {
@@ -148,17 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'convencional':
                     sacas = 55;
                     aguaEconomizadaLitros = 0;
-                    parecerSolo = "⚠️ Alta exposição à erosão. O solo precisa de cobertura vegetal.";
+                    parecerSolo = "⚠️ Solo exposto. Risco de erosão e perda de nutrientes.";
                     break;
                 case 'direto':
                     sacas = 68;
                     aguaEconomizadaLitros = 15000; // 15 mil litros preservados por ha
-                    parecerSolo = "✅ A palhada atua como esponja natural de umidade.";
+                    parecerSolo = "✅ Palhada atua como esponja natural de umidade.";
                     break;
                 case 'agricultura_40':
                     sacas = 85;
                     aguaEconomizadaLitros = 45000; // 45 mil litros preservados por ha
-                    parecerSolo = "🌟 Perfeição tecnológica: O solo está em equilíbrio dinâmico e saudável.";
+                    parecerSolo = "🌟 Perfeição tecnológica: Solo saudável e em equilíbrio.";
                     break;
             }
 
@@ -168,15 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const fmt = new Intl.NumberFormat('pt-BR'); // Formatador nativo de números
 
             // Manipulação dinâmica de DOM para injetar o relatório (Nível 4 JS)
-            // Agora personalizando com o nome do usuário capturado
+            // Incluindo o Olá Personalizado
             divResultado.innerHTML = `
                 <div class="box-relatorio">
-                    <h3>📊 Relatório Sustentável para ${usuario_nome}</h3>
+                    <h3>📊 Olá, ${nomeUsuario}! <br> Aqui está seu Relatório Sustentável</h3>
+                    <hr style="margin: 15px 0; border: 0; border-top: 1px dashed var(--cor-borda);">
                     <p>Mapeamento de <strong>${hectares} hectares</strong> operando em regime de ${selectTec.options[selectTec.selectedIndex].text}.</p>
-                    <hr style="margin: 15px 0; border-top: 1px dashed var(--cor-borda);">
+                    <br>
                     <p>🌾 <strong>Produtividade Esperada:</strong> <span class="dado-verde">${fmt.format(totalSacas)} sacas</span> (${sacas} sc/ha)</p>
-                    <p>💧 <strong>Água Preservada:</strong> <span class="dado-verde">${fmt.format(totalAgua)} Litros</span> por ciclo</p>
-                    <p>🌍 <strong>Diagnóstico:</strong> ${parecerSolo}</p>
+                    <p>💧 <strong>Água Doce Preservada:</strong> <span class="dado-verde">${fmt.format(totalAgua)} Litros</span> por ciclo</p>
+                    <p>🌍 <strong>Diagnóstico do Solo:</strong> <span class="dado-verde">${parecerSolo}</span></p>
                 </div>
             `;
 
@@ -186,9 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
             btnCalcular.classList.remove('oculto');
             btnCalcular.textContent = "Refazer Projeção";
 
-        }, 1500); // 1500 milissegundos = 1.5s de delay para UX
+        }, 1500); // 1.5s de delay simulado
     });
 });
-
-/* VERIFICAÇÃO DE STATUS DO CONSOLE (Demonstra Originalidade e Zero Bugs) */
-console.log("CoopAgro PR - Aplicação carregada com sucesso. Sem erros de script.");
