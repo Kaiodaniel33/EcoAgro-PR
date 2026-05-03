@@ -26,17 +26,16 @@ body.dark-mode {
     --sombra: 0 10px 25px -10px rgba(0,0,0,0.5);
 }
 
-/* RESET DE ENGENHARIA GLOBAIS */
+/* RESET E GLOBAIS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px; /* Tamanho base */
 }
 
 body {
@@ -44,6 +43,7 @@ body {
     color: var(--text-color);
     transition: var(--transicao);
     line-height: 1.6;
+    padding-top: 80px; /* Compensa o header fixo */
 }
 
 .container {
@@ -53,7 +53,7 @@ body {
 }
 
 .secao {
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 .bg-claro {
@@ -62,30 +62,18 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.visual-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
 /* ==================================================================
-   HEADER PREMIUM (Flexbox Dinâmico)
+   HEADER PREMIUM (Reestruturado para Zero Bugs)
    ================================================================== */
 .header-glass {
     position: fixed;
     top: 0;
     width: 100%;
     background: rgba(var(--surface-color), 0.85);
-    backdrop-filter: blur(12px); /* Efeito Glassmorphism */
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
-    transition: var(--transicao);
 }
 
 .navbar {
@@ -101,50 +89,44 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    cursor: pointer;
+    color: var(--text-color);
 }
 
 .logo-img {
     height: 50px;
     width: auto;
-    object-fit: contain;
-    animation: flutuarLogo 4s ease-in-out infinite; /* Micro-animação visual */
 }
 
 .logo-texto {
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -1px;
-    color: var(--text-color);
 }
 
 .logo-texto span {
     color: var(--primary-color);
 }
 
-/* BOTÃO DE TEMA (O Pulo do Gato - Posicionado após o Nome) */
+/* BOTÃO DE TEMA (Simplificado - SEM ROTAÇÃO) */
 .btn-tema {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: var(--bg-destaque);
+    background-color: var(--bg-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
     padding: 8px 16px;
     border-radius: 20px;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transicao);
+    /* Transição suave apenas de cor e escala, sem rotate */
+    transition: background-color 0.3s ease, transform 0.2s ease;
     font-size: 0.9rem;
-    /* Garante visibilidade e posição */
-    order: 2; /* Posiciona após .brand-group em PC */
-    margin-right: auto; /* Joga os controles para a direita */
-    margin-left: 12px; /* Espaço do nome */
 }
 
 .btn-tema:hover {
     background-color: var(--border-color);
-    transform: scale(1.05) rotate(15deg);
+    transform: scale(1.05); /* Pequeno pulso, sem virartorto */
 }
 
 /* Navegação e Controles */
@@ -152,21 +134,18 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    order: 3;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     gap: 24px;
-    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
-    font-size: 1rem;
     transition: var(--transicao);
 }
 
@@ -183,9 +162,9 @@ body {
 }
 
 /* ==================================================================
-   BOTÕES GERAIS E COMPONENTES UI
+   COMPONENTES UI GERAIS
    ================================================================== */
-.btn-primario, .btn-secundario, .btn-outline {
+.btn-primario, .btn-secundario {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -220,25 +199,18 @@ body {
     border-color: var(--text-color);
 }
 
-.btn-outline {
-    background-color: transparent;
-    border: 2px solid var(--cor-primaria);
-    color: var(--cor-primaria);
-}
-
 .btn-block {
     width: 100%;
 }
 
-/* HERO SECTION (Organizado e Bonito) */
+/* HERO SECTION */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 90vh; /* Um pouco menor que 100vh para didática */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    overflow: hidden;
 }
 
 .glow-effect {
@@ -269,7 +241,6 @@ body {
     font-size: clamp(2.5rem, 5vw, 4.2rem);
     line-height: 1.1;
     margin-bottom: 24px;
-    letter-spacing: -2px;
 }
 
 .hero-conteudo span {
@@ -291,7 +262,7 @@ body {
     justify-content: center;
 }
 
-/* NOSSAS AÇÕES (CSS Grid e Micro-interações) */
+/* NOSSAS AÇÕES */
 .header-secao {
     text-align: center;
     margin-bottom: 60px;
@@ -301,21 +272,7 @@ body {
     color: var(--primary-color);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
     font-size: 0.9rem;
-}
-
-.header-secao h2 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    margin: 12px 0;
-    letter-spacing: -1px;
-}
-
-.header-secao p {
-    color: var(--text-muted);
-    font-size: 1.125rem;
-    max-width: 500px;
-    margin: 0 auto;
 }
 
 .grid-cards-acoes {
@@ -343,88 +300,17 @@ body {
     margin-bottom: 24px;
 }
 
-.card-acao h3 {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-}
-
-.card-acao p {
-    color: var(--text-muted);
-}
-
-/* BOAS-VINDAS E CAPTURA DE NOME (Didático e Personalizado) */
-.boas-vindas-wrapper {
+/* SIMULADOR TURBINADO */
+.grid-simulador {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
 }
 
-.boas-vindas-form {
-    background-color: var(--surface-color);
-    padding: 48px;
-    border-radius: var(--raio-borda);
-    box-shadow: var(--sombra);
-}
-
-.boas-vindas-form h3 {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
-}
-
-.boas-vindas-form p {
-    color: var(--text-muted);
-    margin-bottom: 32px;
-}
-
-.input-grupo-flex {
-    display: flex;
-    gap: 16px;
-}
-
-.boas-vindas-form input {
-    flex: 1;
-    padding: 16px;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--text-color);
-    transition: var(--transicao);
-}
-
-.boas-vindas-form input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-}
-
-#greeting-display {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    animation: fadeIn 0.5s ease;
-}
-
-/* SIMULADOR TURBINADO (Organizado e Detalhado) */
-.grid-simulador {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.simulador-texto h2 {
-    font-size: 2.5rem;
-    margin-bottom: 16px;
-}
-
-.simulador-texto p {
-    color: var(--text-muted);
-    margin-bottom: 32px;
-}
-
 .lista-passos {
     list-style: none;
+    margin-top: 30px;
 }
 
 .lista-passos li {
@@ -466,7 +352,7 @@ body {
     color: var(--text-color);
 }
 
-/* LOADING E RESULTADO (Injeção de DOM Nível 4 JS) */
+/* LOADING E RESULTADO (JS) */
 .oculto { display: none; }
 
 #loading {
@@ -492,13 +378,6 @@ body {
     background-color: rgba(34, 197, 94, 0.05);
     border-radius: 12px;
     border: 1px dashed var(--primary-color);
-    animation: slideDown 0.5s ease;
-}
-
-.box-relatorio hr {
-    border: 0;
-    border-top: 1px solid var(--border-color);
-    margin: 16px 0;
 }
 
 .box-relatorio span {
@@ -506,7 +385,7 @@ body {
     color: var(--primary-color);
 }
 
-/* ANIMAÇÕES @KEYFRAMES CSS */
+/* ANIMAÇÕES @KEYFRAMES */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -518,47 +397,50 @@ body {
     transform: translateY(0);
 }
 
-@keyframes flutuarLogo {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* FOOTER */
+/* RODAPÉ OFICIAL */
 .footer-institucional {
     background-color: #1a252f;
     color: #ffffff;
     text-align: center;
-    padding: 30px 0;
+    padding: 40px 0;
+    border-top: 4px solid var(--cor-destaque);
+}
+
+.texto-footer p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* ==================================================================
-   RESPONSIVIDADE TOTAL (Celular e Tablet)
+   RESPONSIVIDADE AJUSTADA (Celular e Tablet)
    ================================================================== */
 @media (max-width: 992px) {
-    .navbar { height: auto; padding: 15px 0; flex-wrap: wrap; }
+    body { padding-top: 70px; }
+    .navbar { height: 70px; }
     
-    /* Reorganização Dinâmica da UI */
-    .brand-group { order: 1; flex: 1; justify-content: center; }
-    .btn-tema { order: 2; margin-left: 12px; margin-right: 0; }
-    .nav-controls { order: 3; flex: 1; justify-content: flex-end; }
+    /* Organização Mobile: Logo, Tema menor, Sanduíche menor */
+    .brand-group { gap: 8px; }
+    .logo-img { height: 40px; }
+    .texto-oculto-mobile { display: none; } /* Esconde texto do nome e botão tema */
 
-    .menu-toggle { display: block; } /* Liga o Sanduíche */
+    .btn-tema {
+        padding: 6px 12px; /* Menor no celular */
+        margin-left: auto; /* Joga para o centro-direita */
+    }
+
+    .menu-toggle {
+        display: block; /* Liga o Sanduíche */
+        font-size: 1.6rem; /* Menor no celular */
+        margin-left: 15px;
+    }
+
     .nav-links {
         display: none; /* Esconde a lista deitada */
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 80px;
+        top: 70px;
         left: 0;
         background-color: var(--surface-color);
         padding: 20px;
@@ -566,10 +448,8 @@ body {
         box-shadow: 0 10px 10px rgba(0,0,0,0.1);
     }
     
-    .nav-links.ativo { display: flex; animation: slideDown 0.3s ease; } /* JS Adiciona Classe */
+    .nav-links.ativo { display: flex; } /* JS Liga */
 
     .hero-conteudo h1 { font-size: 2.8rem; }
-    .boas-vindas-wrapper, .grid-simulador { grid-template-columns: 1fr; gap: 40px; }
-    .input-grupo-flex { flex-direction: column; }
-    .hero-botoes { flex-direction: column; }
+    .grid-simulador { grid-template-columns: 1fr; gap: 40px; }
 }
