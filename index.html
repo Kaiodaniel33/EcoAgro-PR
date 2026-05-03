@@ -16,12 +16,12 @@
             
             <a href="#inicio" class="brand-group">
                 <img src="assets/img/logo.png" alt="Logo CoopAgro PR com folha e circuitos" class="logo-img">
-                <div class="logo-texto">CoopAgro<span>PR</span></div>
+                <div class="logo-texto texto-oculto-mobile">CoopAgro<span>PR</span></div>
             </a>
             
             <button id="btn-tema" class="btn-tema" aria-label="Alternar Modo Escuro/Claro">
                 <span id="icone-tema">🌙</span> 
-                <span class="texto-tema">Modo Escuro</span>
+                <span class="texto-tema texto-oculto-mobile">Modo Escuro</span>
             </button>
             
             <div class="nav-controls">
@@ -45,8 +45,8 @@
                 <h1>Tecnologia e Natureza em <span>Perfeito Equilíbrio</span></h1>
                 <p>Nossa plataforma une o conhecimento do campo à inovação tecnológica para construir um agronegócio mais forte, lucrativo e sustentável.</p>
                 <div class="hero-botoes">
-                    <a href="#acoes" class="btn-primario">Descobrir Ações</a>
-                    <a href="#simulador" class="btn-secundario">Testar Simulador</a>
+                    <a href="#simulador" class="btn-primario">Testar Simulador</a>
+                    <a href="#acoes" class="btn-secundario">Conhecer Ações</a>
                 </div>
             </div>
         </section>
@@ -55,50 +55,35 @@
             <div class="header-secao reveal">
                 <span class="pre-titulo">Como Trabalhamos</span>
                 <h2>Inovação para o Campo</h2>
-                <p>Conheça as tecnologias que garantem um agro forte e um futuro sustentável no Paraná.</p>
+                <p>Conheça as tecnologias que garantem um agro forte e um futuro sustentável.</p>
             </div>
 
             <div class="grid-cards-acoes">
                 <article class="card-acao reveal" style="transition-delay: 100ms;">
                     <div class="card-icon">🛰️</div>
                     <h3>Agricultura de Precisão</h3>
-                    <p>Usamos satélites e drones para mapear a variabilidade do solo. Isso permite aplicar adubos e defensivos apenas onde é necessário, economizando recursos e protegendo o lençol freático.</p>
+                    <p>Mapeamento da variabilidade do solo para aplicar insumos apenas onde é necessário, economizando recursos e protegendo o meio ambiente.</p>
                 </article>
                 <article class="card-acao reveal" style="transition-delay: 200ms;">
                     <div class="card-icon">🌱</div>
                     <h3>Sistema de Plantio Direto</h3>
-                    <p>Ao dispensar o revolvimento do solo e manter a palhada da safra anterior, nós prevenimos a erosão, mantemos a umidade da terra e capturamos carbono da atmosfera.</p>
+                    <p>Manejo que mantém a palhada da safra anterior, prevenindo a erosão, mantendo a umidade da terra e capturando carbono.</p>
                 </article>
                 <article class="card-acao reveal" style="transition-delay: 300ms;">
-                    <div class="card-icon">⚡</div>
-                    <h3>Energia Rural Limpa</h3>
-                    <p>Incentivamos a instalação de biodigestores e painéis solares nas propriedades rurais, transformando resíduos em energia e reduzindo a pegada de carbono da produção.</p>
+                    <div class="card-icon">💧</div>
+                    <h3>Gestão Hídrica Inteligente</h3>
+                    <p>Sensores e monitoramento para uso eficiente da água doce na irrigação, garantindo a produção sem desperdiçar recursos vitais.</p>
                 </article>
             </div>
         </section>
 
-        <section id="boas-vindas" class="secao bg-claro">
-            <div class="container boas-vindas-wrapper reveal">
-                <div class="boas-vindas-form">
-                    <h3>Primeiro, queremos te conhecer</h3>
-                    <p>Insira seu nome para receber uma experiência personalizada e um relatório exclusivo.</p>
-                    <div class="input-grupo-flex">
-                        <label for="nome-usuario" class="visual-hidden">Seu Nome:</label>
-                        <input type="text" id="nome-usuario" placeholder="Seu Nome Completo" required>
-                        <button id="btn-comecar" class="btn-primario">Começar</button>
-                    </div>
-                </div>
-                <div id="greeting-display" class="oculto"></div>
-            </div>
-        </section>
-
-        <section id="simulador" class="secao">
+        <section id="simulador" class="secao bg-claro">
             <div class="container grid-simulador reveal">
                 <div class="simulador-texto">
                     <h2>Simulador Inteligente</h2>
-                    <p>Descubra em 3 passos o impacto da adoção tecnológica na sua propriedade. Seus dados são convertidos em projeções reais de sustentabilidade.</p>
+                    <p>Descubra o impacto da adoção tecnológica na sua propriedade. Seus dados são convertidos em projeções reais de sustentabilidade.</p>
                     <ul class="lista-passos">
-                        <li><strong>Passo 1:</strong> Preencha o tamanho da sua área mapeada.</li>
+                        <li><strong>Passo 1:</strong> Preencha seu nome completo e o tamanho da área.</li>
                         <li><strong>Passo 2:</strong> Selecione o nível de tecnologia a aplicar.</li>
                         <li><strong>Passo 3:</strong> Clique e veja o relatório detalhado.</li>
                     </ul>
@@ -107,7 +92,11 @@
                 <div class="box-calculadora">
                     <form id="form-agro">
                         <div class="grupo-input">
-                            <label for="area">1. Área Total Mapeada (Hectares):</label>
+                            <label for="nome-usuario">1. Seu Nome Completo:</label>
+                            <input type="text" id="nome-usuario" placeholder="Ex: Kaio Daniel de Souza" required>
+                        </div>
+                        <div class="grupo-input">
+                            <label for="area">Tamanho da Área Mapeada (Hectares):</label>
                             <input type="number" id="area" min="1" placeholder="Ex: 120" required>
                         </div>
                         <div class="grupo-input">
@@ -134,9 +123,12 @@
     </main>
 
     <footer class="footer-institucional">
-        <div class="container">
-            <p>&copy; 2026 <strong>CoopAgro PR</strong> - Campo Mourão.</p>
-            <p>Projeto Desenvolvido por <strong>Kaio Daniel</strong> (TDS 2º Ano).</p>
+        <div class="container texto-footer">
+            <p>2026 CoopAgro PR. Campo Mourão.</p>
+            <p>Kaio Daniel de Souza da costa.</p>
+            <p>Técnico de Desenvolvimento de Sistemas.</p>
+            <p>Núcleo Regional de Campo Mourão, Paraná.</p>
+            <p>Colégio Prof Ivone Soares castanhado.</p>
         </div>
     </footer>
 
