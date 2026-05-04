@@ -93,7 +93,7 @@
                     <form id="form-agro">
                         <div class="grupo-input">
                             <label for="nome-usuario">1. Seu Nome Completo:</label>
-                            <input type="text" id="nome-usuario" placeholder="Ex: Kaio Daniel de Souza" required>
+                            <input type="text" id="nome-usuario" placeholder="Ex: Kaio Daniel de Souza da Costa" required>
                         </div>
                         <div class="grupo-input">
                             <label for="area">Tamanho da Área Mapeada (Hectares):</label>
@@ -111,8 +111,8 @@
                         <button type="submit" class="btn-primario btn-block" id="btn-calcular">3. Gerar Relatório Sustentável</button>
                     </form>
 
-                    <div id="loading" class="oculto">
-                        <div class="spinner"></div>
+                    <div id="status-carregamento" class="oculto">
+                        <div class="loader"></div>
                         <p>Processando inteligência agronômica...</p>
                     </div>
 
@@ -123,12 +123,19 @@
     </main>
 
     <footer class="footer-institucional">
-        <div class="container texto-footer">
-            <p>2026 CoopAgro PR. Campo Mourão.</p>
-            <p>Kaio Daniel de Souza da costa.</p>
-            <p>Técnico de Desenvolvimento de Sistemas.</p>
-            <p>Núcleo Regional de Campo Mourão, Paraná.</p>
-            <p>Colégio Prof Ivone Soares castanhado.</p>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img src="assets/img/logo.png" alt="Logo CoopAgro PR" class="logo-footer-img">
+                <div class="logo-texto texto-branco">CoopAgro<span>PR</span></div>
+            </div>
+            
+            <div class="footer-textos">
+                <p>&copy; 2026 Campo Mourão, Paraná.</p>
+                <p>Desenvolvido por <strong>Kaio Daniel de Souza da Costa</strong></p>
+                <p>Técnico de Desenvolvimento de Sistemas</p>
+                <p>Núcleo Regional de Campo Mourão</p>
+                <p>Colégio Estadual Professor Ivone Soares Castanharo</p>
+            </div>
         </div>
     </footer>
 
