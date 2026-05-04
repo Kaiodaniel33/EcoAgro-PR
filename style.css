@@ -134,7 +134,7 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 
 /* Textos do rodapé alinhados à ESQUERDA e mais próximos */
 .footer-textos {
-    text-align: left; /* Modificado como você pediu */
+    text-align: left; 
 }
 
 .footer-textos p {
