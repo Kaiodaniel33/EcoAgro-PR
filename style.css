@@ -37,9 +37,9 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 .header-glass { position: fixed; top: 0; width: 100%; background: rgba(var(--surface-color), 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); z-index: 1000; }
 .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
 
-.brand-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-color); }
-.logo-img { height: 50px; width: auto; }
-.logo-texto { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; }
+.brand-group { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-color); }
+.logo-img { height: 50px; width: auto; flex-shrink: 0; }
+.logo-texto { font-size: 1.5rem; font-weight: 800; letter-spacing: -1px; white-space: nowrap; }
 .logo-texto span { color: var(--primary-color); }
 
 /* Botão de Tema Fixado e Simples */
@@ -100,11 +100,11 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 .reveal.ativo { opacity: 1; transform: translateY(0); }
 
 /* ==================================================================
-   RODAPÉ (NOVO FOOTER PREMIUM E RESPONSIVO)
+   RODAPÉ OFICIAL (Corrigido para a logo ficar lado a lado e travada)
    ================================================================== */
 .footer-institucional {
-    background-color: #0f172a; /* Cor de fundo escura premium */
-    color: #94a3b8; /* Texto suave no rodapé */
+    background-color: #0f172a; 
+    color: #94a3b8; 
     padding: 60px 0 40px;
     border-top: 4px solid var(--primary-color);
 }
@@ -113,19 +113,22 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Permite quebrar linha no celular */
+    flex-wrap: wrap; 
     gap: 40px;
 }
 
+/* FORÇA a imagem a ficar na mesma linha do texto CoopAgro */
 .footer-brand {
     display: flex;
+    flex-direction: row; 
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .logo-footer-img {
-    height: 60px;
-    /* Deixa a logo mais neutra no rodapé para um ar corporativo */
+    height: 45px; /* Tamanho exato e travado para não estourar */
+    width: auto;
+    flex-shrink: 0; /* Impede a imagem de quebrar o layout */
     filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); 
 }
 
@@ -147,26 +150,29 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 }
 
 /* ==================================================================
-   MEDIA QUERIES (Celulares e Tablets)
+   MEDIA QUERIES (Celulares e Tablets) - Ajuste Fino para Caber Tudo
    ================================================================== */
 @media (max-width: 992px) {
     body { padding-top: 70px; }
-    .navbar { height: 70px; }
+    .navbar { height: 70px; padding: 0 10px; }
     
-    /* Organização Mobile Header */
-    .brand-group { gap: 8px; }
-    .logo-img { height: 40px; }
-    .texto-oculto-mobile { display: none; }
+    /* Fazendo a Logo e o Nome caberem na mesma linha no celular */
+    .brand-group { gap: 6px; }
+    .logo-img { height: 35px; } /* Diminui a logo um pouco */
+    .logo-texto { font-size: 1.25rem; } /* Diminui o texto da logo um pouco */
+    
+    /* Oculta SÓ o texto "Modo Escuro", deixa a lua/sol */
+    .texto-oculto-mobile { display: none; } 
 
     .btn-tema {
-        padding: 6px 12px;
-        margin-left: auto;
+        padding: 6px 10px;
+        margin-left: auto; /* Empurra para a direita */
     }
 
     .menu-toggle {
         display: block;
         font-size: 1.6rem;
-        margin-left: 15px;
+        margin-left: 10px;
     }
 
     .nav-links {
@@ -184,16 +190,20 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
     
     .nav-links.ativo { display: flex; }
 
-    .hero-conteudo h1 { font-size: 2.8rem; }
+    .hero-conteudo h1 { font-size: 2.5rem; }
     .grid-simulador { grid-template-columns: 1fr; gap: 40px; }
 
-    /* Organização Mobile Footer */
+    /* Organização Mobile Footer (Fica tudo centralizado) */
     .footer-grid {
-        flex-direction: column; /* Empilha os itens um em cima do outro */
-        text-align: center; /* Centraliza tudo no celular */
+        flex-direction: column; 
+        text-align: center; 
     }
     
+    .footer-brand {
+        justify-content: center; /* Centraliza a logo com o texto no rodapé do celular */
+    }
+
     .footer-textos {
-        text-align: center; /* No celular, o texto fica centralizado */
+        text-align: center; 
     }
 }
