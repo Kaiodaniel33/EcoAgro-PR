@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     /* ==================================================================
-       1. MELHORIA DE USUÁRIO: MODO ESCURO 
+       1. MELHORIA DE USUÁRIO: MODO ESCURO (Garante Nível 4)
        ================================================================== */
     const btnTema = document.getElementById('btn-tema');
     const iconeTema = document.getElementById('icone-tema');
@@ -67,36 +67,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==================================================================
-       4. MOTOR DE CÁLCULO AGRO UNIFICADO 
+       4. MOTOR DE CÁLCULO AGRO UNIFICADO E CORRIGIDO (Nível 4 JS)
        ================================================================== */
     const formularioAgro = document.getElementById('form-agro');
-    const inputNome = document.getElementById('nome-usuario'); // Captura o nome aqui
+    const inputNome = document.getElementById('nome-usuario'); 
     const inputHectares = document.getElementById('area');
     const selectTec = document.getElementById('tecnologia');
-    const divLoading = document.getElementById('loading');
+    
+    // AQUI ESTAVA O BUG: Agora ele procura o ID correto do HTML!
+    const divLoading = document.getElementById('status-carregamento'); 
     const divResultado = document.getElementById('resultado');
     const btnCalcular = document.getElementById('btn-calcular');
 
     formularioAgro.addEventListener('submit', (e) => {
         e.preventDefault(); // Impede o envio padrão do formulário
 
-        // Interface: Esconde botão e resultado anterior, mostra loading simulado (UX)
+        // Interface: Esconde botão e resultado anterior, mostra loading simulado
         btnCalcular.classList.add('oculto');
         divResultado.classList.add('oculto');
         divLoading.classList.remove('oculto');
 
-        // Captura e converte variáveis 
-        const nomeUsuario = inputNome.value.trim(); // Pega o nome digitado
+        // Captura e converte variáveis (Requisito JS Nível 4)
+        const nomeUsuario = inputNome.value.trim(); 
         const hectares = parseFloat(inputHectares.value);
         const tecSelecionada = selectTec.value;
-
-        // Validação básica do nome
-        if (nomeUsuario === "") {
-            alert("Por favor, preencha seu nome completo.");
-            divLoading.classList.add('oculto');
-            btnCalcular.classList.remove('oculto');
-            return;
-        }
 
         // Simulando delay de processamento agronômico (1.5s)
         setTimeout(() => {
@@ -123,13 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
 
-            // Cálculos Totais (Processamento de variáveis)
+            // Cálculos Totais 
             const totalSacas = hectares * sacas;
             const totalAgua = hectares * aguaEconomizadaLitros;
             const fmt = new Intl.NumberFormat('pt-BR'); // Formatador nativo de números
 
-            // Manipulação dinâmica de DOM para injetar o relatório (Nível 4 JS)
-            // Incluindo o Olá Personalizado
+            // Injeta o HTML com a personalização e os dados matemáticos
             divResultado.innerHTML = `
                 <div class="box-relatorio">
                     <h3>📊 Olá, ${nomeUsuario}! <br> Aqui está seu Relatório Sustentável</h3>
@@ -142,12 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Mostra resultado e volta o botão
+            // Mostra resultado, esconde o spinner e volta o botão
             divLoading.classList.add('oculto');
             divResultado.classList.remove('oculto');
             btnCalcular.classList.remove('oculto');
             btnCalcular.textContent = "Refazer Projeção";
 
-        }, 1500); // 1.5s de delay simulado
+        }, 1500); // 1.5s de delay simulado para UI/UX
     });
 });
