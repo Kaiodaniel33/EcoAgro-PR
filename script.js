@@ -1,4 +1,3 @@
-// Aguarda o HTML carregar completamente para evitar erros de leitura do DOM
 document.addEventListener('DOMContentLoaded', () => {
     
     // ==========================================
@@ -123,7 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
     formAgro.addEventListener('submit', (e) => {
         e.preventDefault(); 
 
-        const nomeUsuario = inputNome.value.trim(); 
+        // Captura e sanitiza o nome para prevenir ataques XSS simples (diferencial técnico)
+        const nomeUsuarioBruto = inputNome.value.trim();
+        const nomeUsuario = nomeUsuarioBruto.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        
         const hectares = parseFloat(inputHectares.value);
         const tecSelecionada = selectTec.value;
 
@@ -145,11 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const fmt = new Intl.NumberFormat('pt-BR'); 
             const nomeTec = selectTec.options[selectTec.selectedIndex].text;
 
-            // Manipula o DOM injetando HTML limpo (sem CSS inline para não ferir edital)
+            // Manipula o DOM injetando HTML limpo. CSS inline removido (<hr class="linha-divisoria">) para respeitar o edital.
             divResultado.innerHTML = `
                 <div class="box-relatorio">
                     <h3>📊 Olá, ${nomeUsuario}! <br> Aqui está seu Relatório Sustentável</h3>
-                    <hr style="margin: 15px 0; border: 0; border-top: 1px dashed var(--border-color);">
+                    <hr class="linha-divisoria">
                     <p>Mapeamento de <strong>${hectares} hectares</strong> operando em regime de ${nomeTec}.</p>
                     <br>
                     <p>🌾 <strong>Produtividade Esperada:</strong> <span class="dado-verde">${fmt.format(projecao.totalSacas)} sacas</span> (${projecao.sacasPorHa} sc/ha)</p>
