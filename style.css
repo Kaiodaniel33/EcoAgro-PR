@@ -85,20 +85,21 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 
 .box-relatorio { margin-top: 32px; padding: 24px; background-color: rgba(34, 197, 94, 0.05); border-radius: 12px; border: 1px dashed var(--primary-color); }
 
-/* Classe ajustada para substituir o CSS inline e respeitar as regras do edital */
+/* CLASSE ADICIONADA: Substitui o CSS inline do JavaScript e respeita o edital */
+.linha-divisoria { margin: 15px 0; border: 0; border-top: 1px dashed var(--border-color); }
+
 .dado-verde { color: var(--primary-color); font-weight: bold; }
 
 .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
 .reveal.ativo { opacity: 1; transform: translateY(0); }
 
-/* RODAPÉ HIERÁRQUICO E ALINHADO (Configuração Nova) */
+/* RODAPÉ HIERÁRQUICO E ALINHADO */
 .footer-institucional { background-color: #0f172a; color: #94a3b8; padding: 60px 0 40px; border-top: 4px solid var(--primary-color); }
 .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
 .footer-brand { display: flex; flex-direction: row; align-items: center; gap: 12px; }
 .logo-footer-img { height: 45px; width: auto; flex-shrink: 0; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); }
 .texto-branco { color: #ffffff; }
 
-/* Bloco de texto alinhado à esquerda com linha de destaque */
 .footer-textos { 
     text-align: left; 
     border-left: 3px solid var(--primary-color);
@@ -109,15 +110,12 @@ body { background-color: var(--bg-color); color: var(--text-color); transition: 
 .footer-dev { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 15px; }
 .footer-escola { font-size: 0.85rem; line-height: 1.6; opacity: 0.8; }
 
-/* Foco e Acessibilidade */
 input:focus, select:focus, button:focus, a:focus { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 
-/* Botão Voltar ao Topo */
 #btn-topo { position: fixed; bottom: 30px; right: 30px; background-color: var(--primary-color); color: #ffffff; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(21, 128, 61, 0.4); z-index: 999; transition: var(--transicao); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transform: translateY(20px); }
 #btn-topo.visivel { opacity: 1; visibility: visible; transform: translateY(0); }
 #btn-topo:hover { background-color: var(--primary-hover); transform: translateY(-5px); }
 
-/* Responsividade (Intocada para celular e tablet como você pediu) */
 @media (max-width: 1200px) {
     .hero-conteudo h1 { font-size: 3.5rem; }
     .grid-simulador { gap: 30px; }
