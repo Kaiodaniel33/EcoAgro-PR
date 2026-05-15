@@ -1,32 +1,157 @@
-# 🌱 CoopAgro PR | Plataforma de Impacto Sustentável
+# CoopAgro PR | Plataforma de Impacto Sustentável
 
-## 🎯 Objetivo do Projeto e Alinhamento Temático
-Este projeto foi desenvolvido exclusivamente para o **Concurso Agrinho 2026** (Categoria Programação Front-End - Subcategoria 3). A plataforma atende rigorosamente ao tema central: *"Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"*.
+# Objetivo do Projeto e Alinhamento Temático
 
-O objetivo é provar, através de uma interface web interativa e orientada a dados, que a adoção de tecnologias no campo — como Agricultura de Precisão e Plantio Direto — não apenas preserva os recursos naturais, mas também otimiza os processos operacionais, aumentando a lucratividade e a produtividade das propriedades rurais.
+A plataforma **CoopAgro PR** foi desenvolvida exclusivamente para o **Concurso Agrinho 2026**, na Categoria Programação Front-End (Subcategoria 3), seguindo rigorosamente o tema:
 
-## ⚙️ Funcionalidades e Instruções de Uso
-A aplicação foi projetada com foco absoluto em Usabilidade (UX/UI), Acessibilidade e prevenção de erros:
+> *“Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente.”*
 
-1. **Navegação Fluida e Responsiva (One-Page):** O usuário navega pelas seções de forma intuitiva. Em dispositivos móveis, um menu *Sanduíche* dinâmico (☰) é ativado via JavaScript. Um botão interativo de "Voltar ao Topo" facilita a rolagem em telas menores.
-2. **Modo Noturno (Acessibilidade Avançada):** Um botão de alternância de tema no cabeçalho ajusta as variáveis globais de cor (CSS) de toda a aplicação. A preferência do usuário é gravada de forma persistente no navegador via API `localStorage`.
-3. **Simulador Inteligente (Motor Lógico):** A principal ferramenta de otimização da plataforma. O produtor insere seu nome, a área mapeada em hectares e seleciona um pacote tecnológico. O sistema realiza uma validação dinâmica (impedindo dados incorretos ou negativos), processa os cálculos matemáticos em funções isoladas, simula um tempo de carregamento assíncrono e injeta no DOM um relatório customizado com projeções reais de produtividade e economia hídrica.
+O projeto tem como finalidade demonstrar, por meio de uma aplicação web moderna, interativa e orientada por dados, que a utilização de tecnologias no campo contribui diretamente para a construção de uma produção agrícola mais eficiente, sustentável e economicamente viável.
 
-## 💻 Arquitetura Técnica (Critérios de Nível 4)
-O desenvolvimento seguiu estritamente as diretrizes do regulamento, utilizando **exclusivamente tecnologias Front-End nativas**, sem o uso de frameworks externos ou bibliotecas prontas:
+A plataforma evidencia como práticas inovadoras, como Agricultura de Precisão, Plantio Direto e monitoramento inteligente da produção, podem simultaneamente:
 
-* **HTML5 (Semântico e Acessível):** Estruturação lógica com tags corretas (`<main>`, `<section>`, `<article>`, `<nav>`) e implementação de atributos de acessibilidade para leitores de tela (`aria-live`, `aria-label`).
-* **CSS3 (Modular e Fluido):** Uso avançado de Variáveis Globais (`:root`), Flexbox, CSS Grid e `Media Queries` para adaptação impecável da interface em *smartphones*, *tablets* e *desktops*. Implementação de transições de estado (`hover` e `focus`) para navegação via teclado.
-* **JavaScript (Vanilla):** Lógica estruturada em funções de escopo isolado para o motor de cálculo. O script captura eventos nativos (`addEventListener`), manipula o DOM de forma segura injetando *Template Strings* e utiliza processamento assíncrono básico (`setTimeout`). Código livre de *bugs* e sem erros no console.
+* preservar os recursos naturais;
+* reduzir desperdícios;
+* otimizar processos operacionais;
+* aumentar a produtividade agrícola;
+* ampliar a rentabilidade do produtor rural.
 
-## 📂 Estrutura de Diretórios
-O repositório foi organizado e higienizado para manter apenas os arquivos essenciais à execução da aplicação:
+Além de apresentar informações educativas, o projeto busca conscientizar os usuários sobre a importância da integração entre tecnologia, produção agrícola e preservação ambiental.
+
+---
+
+# Funcionalidades e Experiência do Usuário
+
+A aplicação foi desenvolvida com foco em usabilidade, acessibilidade, responsividade e interatividade, proporcionando uma navegação intuitiva em diferentes dispositivos.
+
+# Navegação Responsiva e Estrutura One-Page
+
+A plataforma utiliza uma estrutura do tipo *One-Page*, permitindo que o usuário navegue pelas seções de forma fluida e organizada.
+
+Entre os recursos implementados, destacam-se:
+
+* menu responsivo do tipo “Sanduíche” para dispositivos móveis;
+* rolagem suave entre seções;
+* botão interativo de “Voltar ao Topo”;
+* adaptação automática para smartphones, tablets e computadores.
+
+---
+
+# Modo Noturno e Recursos de Acessibilidade
+
+Com o objetivo de melhorar a experiência do usuário e ampliar a acessibilidade da aplicação, foi implementado um sistema de alternância entre tema claro e escuro.
+
+O recurso utiliza:
+
+* variáveis globais em CSS (`:root`);
+* manipulação dinâmica de classes via JavaScript;
+* armazenamento persistente da preferência do usuário utilizando `localStorage`.
+
+Essa funcionalidade proporciona maior conforto visual e personalização da interface.
+
+---
+
+# Simulador Inteligente de Sustentabilidade Rural
+
+O principal recurso da plataforma é o Simulador Inteligente, desenvolvido para demonstrar os impactos positivos da adoção de tecnologias sustentáveis no agronegócio.
+
+O usuário informa:
+
+* nome do produtor;
+* área cultivada em hectares;
+* pacote tecnológico desejado.
+
+A partir dessas informações, o sistema:
+
+* realiza validações automáticas dos campos;
+* impede valores inválidos ou negativos;
+* executa cálculos matemáticos em funções isoladas;
+* simula carregamento assíncrono;
+* gera relatórios personalizados diretamente na interface.
+
+Os resultados apresentados incluem projeções relacionadas a:
+
+* aumento da produtividade;
+* economia hídrica;
+* eficiência operacional;
+* redução de impactos ambientais;
+* potencial de lucratividade.
+
+---
+
+# Arquitetura Técnica do Projeto
+
+O desenvolvimento foi realizado seguindo integralmente as exigências do regulamento, utilizando exclusivamente tecnologias Front-End nativas, sem frameworks ou bibliotecas externas.
+
+# HTML5 — Estrutura Semântica e Acessível
+
+A aplicação foi estruturada com HTML5 semântico, utilizando elementos apropriados como:
+
+```html
+<main>
+<section>
+<article>
+<nav>
+```
+
+Também foram implementados recursos de acessibilidade, incluindo:
+
+* `aria-label`;
+* `aria-live`;
+* organização hierárquica adequada de títulos;
+* compatibilidade com leitores de tela.
+
+---
+
+# CSS3 — Design Responsivo e Modular
+
+O sistema visual foi desenvolvido com CSS3 moderno, utilizando:
+
+* Variáveis Globais (`:root`);
+* Flexbox;
+* CSS Grid Layout;
+* Media Queries;
+* efeitos de transição (`hover` e `focus`).
+
+A interface foi projetada para garantir responsividade, organização visual e boa experiência de navegação em diferentes resoluções.
+
+---
+
+# JavaScript Vanilla — Lógica e Interatividade
+
+Toda a lógica da aplicação foi construída em JavaScript puro (Vanilla JS), garantindo leveza, desempenho e compatibilidade.
+
+Entre os recursos implementados, destacam-se:
+
+* manipulação dinâmica do DOM;
+* captura de eventos com `addEventListener`;
+* utilização de funções organizadas por responsabilidade;
+* uso de Template Strings;
+* simulação assíncrona com `setTimeout`;
+* validações dinâmicas em tempo real.
+
+O código foi estruturado visando legibilidade, organização, manutenção facilitada e estabilidade da aplicação.
+
+---
+
+# Estrutura de Diretórios
+
+O repositório foi organizado de forma limpa e profissional, contendo apenas os arquivos essenciais para execução da aplicação.
 
 ```text
 /
-├── index.html          # Estrutura semântica principal e conteúdo textual
-├── style.css           # Folha de estilos globais, variáveis e responsividade
-├── script.js           # Lógica de programação estruturada e interatividade
-├── README.md           # Documentação técnica e apresentação do projeto
-└── /assets             # Diretório isolado para recursos visuais
-    └── /img            # Logotipos e imagens devidamente otimizadas
+├── index.html          # Estrutura principal da aplicação
+├── style.css           # Estilos globais e responsividade
+├── script.js           # Lógica de programação e interatividade
+├── README.md           # Documentação técnica do projeto
+└── /assets
+    └── /img            # Recursos visuais otimizados
+```
+
+---
+
+# Considerações Finais
+
+A plataforma CoopAgro PR demonstra que inovação tecnológica e sustentabilidade podem atuar de forma integrada no agronegócio moderno.
+
+O projeto busca incentivar práticas agrícolas mais conscientes, eficientes e responsáveis, reforçando a importância do equilíbrio entre produção e preservação ambiental para a construção de um futuro sustentável.
